@@ -45,11 +45,11 @@
         <TextBlock Grid.Row="2" Grid.Column="6" Text="Sobota" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
         <TextBlock Grid.Row="2" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
 
-        <TextBlock x:Name="Miesiac_i_rok" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="1"  Text="Miesiąc + Rok" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="30" Margin="69,37,76,27"/>
+        <TextBlock x:Name="Miesiac_i_rok" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="1"  Text="Miesiąc i Rok" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="30" Margin="69,37,76,27"/>
 
 
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="2">
-            <TextBlock x:Name="Wybrany_dzien"   HorizontalAlignment="Center"  Text="Wybrany_dzien" VerticalAlignment="Center" FontSize="27" />
+            <TextBlock x:Name="Wybrany_dzien"   HorizontalAlignment="Center"  Text="Wybrany dzien" VerticalAlignment="Center" FontSize="27" />
         </Border>
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="3" Grid.RowSpan="7">
             <StackPanel  x:Name="Tablica_zdarzeń" />
