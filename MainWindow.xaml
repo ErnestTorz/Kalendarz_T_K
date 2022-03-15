@@ -1,0 +1,60 @@
+﻿<Window x:Class="Kalendarz_T_K.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:Kalendarz_T_K"
+            mc:Ignorable="d"
+            Title="MainWindow" Height="750" Width="1300" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="TabDni" Height="719" VerticalAlignment="Bottom" RenderTransformOrigin="0.517,0.531">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="7"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="7"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="7"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="Doprzodu" Grid.Row="1" Grid.Column="6" Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Click="DoPrzodu" Height="30"/>
+        <Button x:Name="Wstecz" Grid.Row="1" Grid.Column="2" Content="&lt;" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="30" Click="DoTylu" Height="30"/>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Poniedziałek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Wtorek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="Środa" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="2" Grid.Column="4" Text="Czwartek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="2" Grid.Column="5" Text="Piątek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="2" Grid.Column="6" Text="Sobota" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="2" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+
+        <TextBlock x:Name="Miesiac_i_rok" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="1"  Text="Miesiąc + Rok" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="30" Margin="69,37,76,27"/>
+
+
+        <Border Background="BurlyWood" Grid.Column="9" Grid.Row="2">
+            <TextBlock x:Name="Wybrany_dzien"   HorizontalAlignment="Center"  Text="Wybrany_dzien" VerticalAlignment="Center" FontSize="27" />
+        </Border>
+        <Border Background="BurlyWood" Grid.Column="9" Grid.Row="3" Grid.RowSpan="7">
+            <StackPanel  x:Name="Tablica_zdarzeń" />
+        </Border>
+
+        <Border Background="LightBlue" Grid.Column="9" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="1"/>
+    </Grid>
+</Window>
