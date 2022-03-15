@@ -49,7 +49,7 @@
 
 
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="2">
-            <TextBlock x:Name="Wybrany_dzien"   HorizontalAlignment="Center"  Text="Wybrany dzien" VerticalAlignment="Center" FontSize="27" />
+            <TextBlock x:Name="Wybrany_dzien"   HorizontalAlignment="Center"  Text="Wybrany_dzien" VerticalAlignment="Center" FontSize="27" />
         </Border>
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="3" Grid.RowSpan="7">
             <StackPanel  x:Name="Tablica_zdarzeń" />
