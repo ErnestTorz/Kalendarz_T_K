@@ -28,6 +28,7 @@ namespace Kalendarz_T_K
         DateTime now = DateTime.Now;
         int year ;
         int month;
+        int Wybrany_miesiac_jako_int;
         public MainWindow()
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace Kalendarz_T_K
             month = now.Month;
             Wybrany_dzien.Text =now.Day.ToString();
             Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM");
+            Wybrany_miesiac_jako_int =now.Month;
             for (int Row = 0; Row < 6; Row++)
             {
                 for (int Col = 0; Col < 7; Col++)
@@ -73,6 +75,7 @@ namespace Kalendarz_T_K
             //Wybrany_dzien.Text = (sender as TextBlock).Text + "." + month + "." + year;
             Wybrany_dzien.Text = (sender as TextBlock).Text;
             Wybrany_miesiac.Text = startofthemonth.ToString("MMMM");
+            Wybrany_miesiac_jako_int = startofthemonth.Month;
             MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
         }
 
