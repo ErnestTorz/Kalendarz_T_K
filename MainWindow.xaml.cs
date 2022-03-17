@@ -35,8 +35,9 @@ namespace Kalendarz_T_K
 
             year = now.Year;
             month = now.Month;
+
             Wybrany_dzien.Text =now.Day.ToString();
-            Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM");
+            Wybrany_miesiac.Text = now.ToString("MMMM");
             Wybrany_miesiac_jako_int =now.Month;
             for (int Row = 0; Row < 6; Row++)
             {
@@ -70,12 +71,12 @@ namespace Kalendarz_T_K
 
        private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
        {
-            DateTime startofthemonth = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
+            DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
             ((sender as TextBlock).Parent as Border).Background = Brushes.LightGreen;
             //Wybrany_dzien.Text = (sender as TextBlock).Text + "." + month + "." + year;
             Wybrany_dzien.Text = (sender as TextBlock).Text;
-            Wybrany_miesiac.Text = startofthemonth.ToString("MMMM");
-            Wybrany_miesiac_jako_int = startofthemonth.Month;
+            Wybrany_miesiac.Text = courentdate.ToString("MMMM");
+            Wybrany_miesiac_jako_int = courentdate.Month;
             MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
         }
 
@@ -137,7 +138,6 @@ namespace Kalendarz_T_K
             if(year==now.Year && month == now.Month)
             {
                 TextBlockDaysBase[dayoftheweek - 2 + now.Day].Background = Brushes.OrangeRed;
-                //Dzien_tyg.Text = startofthemonth.DayOfWeek.ToString();
             }
           
 
