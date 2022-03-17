@@ -25,7 +25,6 @@ namespace Kalendarz_T_K
         TextBlock[] TextBlockDays = new TextBlock[42];
         Border [] TextBlockDaysBase = new Border[42];
 
-        DateTime now = DateTime.Now;
         int year ;
         int month;
         int Wybrany_miesiac_jako_int;
@@ -33,12 +32,15 @@ namespace Kalendarz_T_K
         {
             InitializeComponent();
 
-            year = now.Year;
-            month = now.Month;
+            year = DateTime.Now.Year;
+            month = DateTime.Now.Month;
+            Wybrany_miesiac_jako_int = DateTime.Now.Month;
 
-            Wybrany_dzien.Text =now.Day.ToString();
-            Wybrany_miesiac.Text = now.ToString("MMMM");
-            Wybrany_miesiac_jako_int =now.Month;
+
+            Wybrany_dzien.Text = DateTime.Now.Day.ToString();
+            Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM");
+            
+           
             for (int Row = 0; Row < 6; Row++)
             {
                 for (int Col = 0; Col < 7; Col++)
@@ -64,8 +66,6 @@ namespace Kalendarz_T_K
                                      
                 }
             }
-
-     
             WyswietlDni();
         }
 
@@ -135,9 +135,9 @@ namespace Kalendarz_T_K
                 
 
             }
-            if(year==now.Year && month == now.Month)
+            if(year== DateTime.Now.Year && month == DateTime.Now.Month)
             {
-                TextBlockDaysBase[dayoftheweek - 2 + now.Day].Background = Brushes.OrangeRed;
+                TextBlockDaysBase[dayoftheweek - 2 + DateTime.Now.Day].Background = Brushes.OrangeRed;
             }
           
 
