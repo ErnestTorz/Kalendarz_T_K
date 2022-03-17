@@ -4,6 +4,7 @@
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:local="clr-namespace:Kalendarz_T_K"
+            xmlns:fa="http://schemas.fontawesome.io/icons/"
             mc:Ignorable="d"
             Title="MainWindow" Height="750" Width="1300" WindowStartupLocation="CenterScreen">
     <Grid x:Name="TabDni" Height="719" VerticalAlignment="Bottom" RenderTransformOrigin="0.517,0.531">
@@ -57,13 +58,27 @@
                     <TextBlock  x:Name="Dzien_tyg" Text="" Foreground="WhiteSmoke" FontSize="14"/>
 
                 </StackPanel>
-            
-            
-            
+
+
+
             </StackPanel>
         </Border>
-        
-        <Border Background="BurlyWood" Grid.Column="9" Grid.Row="3" Grid.RowSpan="7">
+
+        <Border Background="BurlyWood" Grid.Column="9" Grid.Row="3" >
+            <Border Background="FloralWhite" CornerRadius="20" HorizontalAlignment="Center" Width="355" Padding="17 15 5 15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBox x:Name="txtNote" Margin="44,-7,43,29" Grid.Column="1" />
+                    <TextBox x:Name="txtNote_Copy" Margin="44,28,43,-6" Grid.Column="1" />
+                </Grid>
+            </Border>
+        </Border>
+
+        <Border Background="BurlyWood" Grid.Column="9" Grid.Row="4" Grid.RowSpan="7">
             <StackPanel  x:Name="Tablica_zdarzeń" />
         </Border>
 
