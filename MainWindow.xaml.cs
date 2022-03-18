@@ -37,6 +37,7 @@ namespace Kalendarz_T_K
             InitializeComponent();
             InitKalendarz(4,1);
             WyswietlDni();
+            
         }
 
 

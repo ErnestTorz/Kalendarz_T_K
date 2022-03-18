@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Kalendarz_T_K;
 
 namespace Kalendarz_T_K.UserControls
 {
@@ -61,5 +62,10 @@ namespace Kalendarz_T_K.UserControls
         }
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(FontAwesome.WPF.FontAwesomeIcon), typeof(Item));
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            StackPanel parent = this.Parent as StackPanel;
+            parent.Children.Clear();
+        }
     }
 }

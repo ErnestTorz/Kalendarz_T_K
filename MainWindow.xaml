@@ -77,7 +77,7 @@
         </Border>
 
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="4" Grid.RowSpan="7">
-            <StackPanel  x:Name="Tablica_zdarzeń" >
+            <StackPanel  x:Name="Tablica_zdarzen" >
                 <uc:Item Title="Kawa z Robertem" Time="12:00 - 13:00" Color="White" Icon="CircleThin" IconBell="Bell"/>
                 <uc:Item Title="Kawa z Robertem" Time="12:00 - 13:00" Color="White" Icon="CheckCircle" IconBell="Bell"/>
             </StackPanel>
