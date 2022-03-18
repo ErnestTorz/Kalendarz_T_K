@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kalendarz_T_K.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,19 @@ namespace Kalendarz_T_K
             InitializeComponent();
             InitKalendarz(4,1);
             WyswietlDni();
-            
+
+            //Test//
+            Item item = new Item();
+            item.Title = "Korepetycje";
+            item.Color = Brushes.White;
+            item.Time = "18:00-19:00";
+            item.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin;
+            item.IconBell = FontAwesome.WPF.FontAwesomeIcon.ClockOutline;
+            Tablica_zdarzen.Children.Add(item);
+            //Koniec Testu
+
+
+
         }
 
 
