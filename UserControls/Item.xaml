@@ -51,7 +51,7 @@
                     <local:MenuButton Icon="Check" Caption="Check"/>
                     <local:MenuButton Icon="BellSlash" Caption="Mute"/>
                     <local:MenuButton Icon="Pencil" Caption="Edit"/>
-                    <local:MenuButton Icon="Trash" Caption="Delate" MouseDoubleClick="MenuButton_MouseDoubleClick"/> 
+                    <local:MenuButton Icon="Trash" Caption="Delate" MouseDoubleClick="MenuButton_MouseDoubleClick_Trash"/> 
                     <!--<Button Width="100" Content="Check"/>
                     <Button Content="Mute"/>
                     <Button Content="Edit"/>
