@@ -23,8 +23,9 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="7"/>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="1.3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -38,13 +39,13 @@
         <Button x:Name="Doprzodu" Grid.Row="1" Grid.Column="6" Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Click="DoPrzodu" Height="30"/>
         <Button x:Name="Wstecz" Grid.Row="1" Grid.Column="2" Content="&lt;" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="30" Click="DoTylu" Height="30"/>
 
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="Poniedziałek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="2" Grid.Column="2" Text="Wtorek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="2" Grid.Column="3" Text="Środa" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="2" Grid.Column="4" Text="Czwartek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="2" Grid.Column="5" Text="Piątek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="2" Grid.Column="6" Text="Sobota" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="2" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Poniedziałek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Wtorek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="Środa" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="3" Grid.Column="4" Text="Czwartek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="3" Grid.Column="5" Text="Piątek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="3" Grid.Column="6" Text="Sobota" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        <TextBlock Grid.Row="3" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
 
         <TextBlock x:Name="Miesiac_i_rok" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="1"  Text="Miesiąc i Rok" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="30" Margin="69,37,76,27"/>
 

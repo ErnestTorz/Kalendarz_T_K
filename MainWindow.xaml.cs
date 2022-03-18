@@ -58,7 +58,7 @@ namespace Kalendarz_T_K
                     TextBlockDaysBase[(Row * 7) + Col].Background = Brushes.Transparent;
                     TextBlockDaysBase[(Row * 7) + Col].CornerRadius = new CornerRadius(360);
                     TextBlockDaysBase[(Row * 7) + Col].Margin = new Thickness(40,20,40,20);
-                    Grid.SetRow(TextBlockDaysBase[(Row * 7) + Col], Row + 3);
+                    Grid.SetRow(TextBlockDaysBase[(Row * 7) + Col], Row + 4);
                     Grid.SetColumn(TextBlockDaysBase[(Row * 7) + Col], Col + 1);
 
                     TextBlockDaysBase[(Row * 7) + Col].Child = TextBlockDays[(Row * 7) + Col];
