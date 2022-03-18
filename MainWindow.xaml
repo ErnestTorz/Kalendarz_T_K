@@ -10,7 +10,7 @@
     <Grid x:Name="TabDni" Height="719" VerticalAlignment="Bottom" RenderTransformOrigin="0.517,0.531">
       
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="7"/>
+            <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -18,7 +18,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="7"/>
+            <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="7"/>
         </Grid.ColumnDefinitions>
