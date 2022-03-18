@@ -9,6 +9,7 @@ namespace Kalendarz_T_K.UserControls
     /// </summary>
     public partial class MenuButton : UserControl
     {
+        
         public MenuButton()
         {
             InitializeComponent();

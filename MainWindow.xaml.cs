@@ -136,7 +136,7 @@ namespace Kalendarz_T_K
             Wybrany_dzien.Text = DateTime.Now.Day.ToString();
             Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM");
             Dzien_tyg.Text= DateTime.Now.ToString("dddd");
-
+           
             for (int Row = 0; Row < 6; Row++)
             {
                 for (int Col = 0; Col < 7; Col++)

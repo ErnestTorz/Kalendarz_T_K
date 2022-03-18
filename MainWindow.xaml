@@ -5,6 +5,7 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:local="clr-namespace:Kalendarz_T_K"
             xmlns:fa="http://schemas.fontawesome.io/icons/"
+            xmlns:uc="clr-namespace:Kalendarz_T_K.UserControls"
             mc:Ignorable="d"
             Title="MainWindow" Height="750" Width="1300" WindowStartupLocation="CenterScreen">
     <Grid x:Name="TabDni" Height="719" VerticalAlignment="Bottom" RenderTransformOrigin="0.517,0.531">
@@ -19,7 +20,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="25"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="7"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -76,7 +77,10 @@
         </Border>
 
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="4" Grid.RowSpan="7">
-            <StackPanel  x:Name="Tablica_zdarzeń" />
+            <StackPanel  x:Name="Tablica_zdarzeń" >
+                <uc:Item Title="Kawa z Robertem" Time="12:00 - 13:00" Color="White" Icon="CircleThin" IconBell="Bell"/>
+                <uc:Item Title="Kawa z Robertem" Time="12:00 - 13:00" Color="White" Icon="CheckCircle" IconBell="Bell"/>
+            </StackPanel>
         </Border>
 
         
