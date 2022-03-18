@@ -44,7 +44,7 @@
             </ToggleButton.Template>   
         </ToggleButton>
 
-        <Popup IsOpen="{Binding IsChecked,ElementName=btnMenu}" AllowsTransparency="True" StaysOpen="False" PlacementTarget="{Binding ElementName=btnMenu}" Placement="Left"
+        <Popup IsOpen="{Binding IsChecked,ElementName=btnMenu}" AllowsTransparency="True" StaysOpen="False" PlacementTarget="{Binding ElementName=btnMenu}" Placement="Relative"
                VerticalOffset="30" HorizontalOffset="15">
             <Border Background="White" CornerRadius="5" Padding="0 4">
                 <StackPanel>

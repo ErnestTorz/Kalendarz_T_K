@@ -71,13 +71,13 @@ namespace Kalendarz_T_K.UserControls
         private void MenuButton_MouseDoubleClick_Check(object sender, MouseButtonEventArgs e)
         {
             StackPanel parent = this.Parent as StackPanel;
-            if (this.Icon == FontAwesome.WPF.FontAwesomeIcon.CircleOutline)
+            if (this.Icon == FontAwesome.WPF.FontAwesomeIcon.CircleThin)
             {
                 this.Icon = FontAwesome.WPF.FontAwesomeIcon.CheckCircle;
             }
             else
             {
-                this.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleOutline;
+                this.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin;
             }
 
         }
