@@ -27,56 +27,37 @@ namespace Kalendarz_T_K
 
         int year ;
         int month;
+
+        int Wybrany_dzien_jako_int;
         int Wybrany_miesiac_jako_int;
+        int Wybrany_rok_jako_int;
+
         public MainWindow()
         {
             InitializeComponent();
-
-            year = DateTime.Now.Year;
-            month = DateTime.Now.Month;
-            Wybrany_miesiac_jako_int = DateTime.Now.Month;
-
-
-            Wybrany_dzien.Text = DateTime.Now.Day.ToString();
-            Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM");
-            
-           
-            for (int Row = 0; Row < 6; Row++)
-            {
-                for (int Col = 0; Col < 7; Col++)
-                {
-                    TextBlockDaysBase[(Row * 7) + Col] = new Border();
-                    TextBlockDays[(Row * 7) + Col] = new TextBlock();
-
-                    TextBlockDays[(Row * 7) + Col].FontSize = 23;
-                    TextBlockDays[(Row * 7) + Col].Text = "";
-                    TextBlockDays[(Row * 7) + Col].VerticalAlignment = VerticalAlignment.Center;
-                    TextBlockDays[(Row * 7) + Col].HorizontalAlignment = HorizontalAlignment.Center;
-                    TextBlockDays[(Row * 7) + Col].Background = Brushes.Transparent;
-                    TextBlockDays[(Row * 7) + Col].MouseDown += Klik_na_dzien;
-
-                    TextBlockDaysBase[(Row * 7) + Col].Background = Brushes.Transparent;
-                    TextBlockDaysBase[(Row * 7) + Col].CornerRadius = new CornerRadius(360);
-                    TextBlockDaysBase[(Row * 7) + Col].Margin = new Thickness(40,20,40,20);
-                    Grid.SetRow(TextBlockDaysBase[(Row * 7) + Col], Row + 4);
-                    Grid.SetColumn(TextBlockDaysBase[(Row * 7) + Col], Col + 1);
-
-                    TextBlockDaysBase[(Row * 7) + Col].Child = TextBlockDays[(Row * 7) + Col];
-                    TabDni.Children.Add(TextBlockDaysBase[(Row * 7) + Col]);
-                                     
-                }
-            }
+            InitKalendarz(4,1);
             WyswietlDni();
         }
+
+
+
+
+
+
+
 
        private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
        {
             DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
             ((sender as TextBlock).Parent as Border).Background = Brushes.LightGreen;
-            //Wybrany_dzien.Text = (sender as TextBlock).Text + "." + month + "." + year;
+            
             Wybrany_dzien.Text = (sender as TextBlock).Text;
             Wybrany_miesiac.Text = courentdate.ToString("MMMM");
+
+            Wybrany_rok_jako_int = year;
             Wybrany_miesiac_jako_int = courentdate.Month;
+            Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
+
             MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
         }
 
@@ -142,5 +123,44 @@ namespace Kalendarz_T_K
           
 
         }
+        private void InitKalendarz(int row_offset, int col_offset)
+        {
+            year = DateTime.Now.Year;
+            month = DateTime.Now.Month;
+            Wybrany_miesiac_jako_int = DateTime.Now.Month;
+
+
+            Wybrany_dzien.Text = DateTime.Now.Day.ToString();
+            Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM");
+            Dzien_tyg.Text= DateTime.Now.ToString("dddd");
+
+            for (int Row = 0; Row < 6; Row++)
+            {
+                for (int Col = 0; Col < 7; Col++)
+                {
+                    TextBlockDaysBase[(Row * 7) + Col] = new Border();
+                    TextBlockDays[(Row * 7) + Col] = new TextBlock();
+
+                    TextBlockDays[(Row * 7) + Col].FontSize = 23;
+                    TextBlockDays[(Row * 7) + Col].Text = "";
+                    TextBlockDays[(Row * 7) + Col].VerticalAlignment = VerticalAlignment.Center;
+                    TextBlockDays[(Row * 7) + Col].HorizontalAlignment = HorizontalAlignment.Center;
+                    TextBlockDays[(Row * 7) + Col].Background = Brushes.Transparent;
+                    TextBlockDays[(Row * 7) + Col].MouseDown += Klik_na_dzien;
+
+                    TextBlockDaysBase[(Row * 7) + Col].Background = Brushes.Transparent;
+                    TextBlockDaysBase[(Row * 7) + Col].CornerRadius = new CornerRadius(360);
+                    TextBlockDaysBase[(Row * 7) + Col].Margin = new Thickness(40, 20, 40, 20);
+                    Grid.SetRow(TextBlockDaysBase[(Row * 7) + Col], Row + row_offset);
+                    Grid.SetColumn(TextBlockDaysBase[(Row * 7) + Col], Col + col_offset);
+
+                    TextBlockDaysBase[(Row * 7) + Col].Child = TextBlockDays[(Row * 7) + Col];
+                    TabDni.Children.Add(TextBlockDaysBase[(Row * 7) + Col]);
+
+                }
+            }
+
+        }
+
     }
 }
