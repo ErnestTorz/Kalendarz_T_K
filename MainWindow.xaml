@@ -8,6 +8,7 @@
             mc:Ignorable="d"
             Title="MainWindow" Height="750" Width="1300" WindowStartupLocation="CenterScreen">
     <Grid x:Name="TabDni" Height="719" VerticalAlignment="Bottom" RenderTransformOrigin="0.517,0.531">
+      
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7"/>
             <ColumnDefinition Width="*"/>
@@ -37,6 +38,7 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="Doprzodu" Grid.Row="1" Grid.Column="6" Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Click="DoPrzodu" Height="30"/>
+        <TextBlock x:Name="Miesiac_i_rok" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="1"  Text="Miesiąc i Rok" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="30" Margin="69,37,76,27"/>
         <Button x:Name="Wstecz" Grid.Row="1" Grid.Column="2" Content="&lt;" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="30" Click="DoTylu" Height="30"/>
 
         <TextBlock Grid.Row="3" Grid.Column="1" Text="Poniedziałek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
@@ -47,21 +49,16 @@
         <TextBlock Grid.Row="3" Grid.Column="6" Text="Sobota" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
         <TextBlock Grid.Row="3" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
 
-        <TextBlock x:Name="Miesiac_i_rok" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="1"  Text="Miesiąc i Rok" VerticalAlignment="Center" Grid.ColumnSpan="3" FontSize="30" Margin="69,37,76,27"/>
-
+        <Border Background="LightBlue" Grid.Column="9" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="1">
+        </Border>
 
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="2">
-            <!--  <TextBlock x:Name="Wybrany_dzien"   HorizontalAlignment="Center"  Text="Wybrany_i_dzien" VerticalAlignment="Center" FontSize="27" /> -->
             <StackPanel Orientation="Horizontal" >
                 <TextBlock x:Name="Wybrany_dzien" Margin="20 -4 0 0" Text="16" FontSize="48" Foreground="WhiteSmoke"  VerticalAlignment="Center" />
                 <StackPanel Margin="10 0 0 0" VerticalAlignment="Center">
                     <TextBlock  x:Name="Wybrany_miesiac" Text="Styczeń" Foreground="WhiteSmoke" FontSize="20"/>
                     <TextBlock  x:Name="Dzien_tyg"  Text="Sobota"  Foreground="WhiteSmoke" FontSize="14"/>
-
                 </StackPanel>
-
-
-
             </StackPanel>
         </Border>
 
@@ -72,9 +69,8 @@
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
                     <TextBox x:Name="txtNote" Margin="44,-7,43,29" Grid.Column="1" />
-                    <TextBox x:Name="txtNote_Copy" Margin="44,28,43,-6" Grid.Column="1" />
+                    <TextBox x:Name="txtNote_Date" Margin="44,28,43,-6" Grid.Column="1" />
                 </Grid>
             </Border>
         </Border>
@@ -83,6 +79,11 @@
             <StackPanel  x:Name="Tablica_zdarzeń" />
         </Border>
 
-        <Border Background="LightBlue" Grid.Column="9" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="1"/>
+        
+   
+    
+    
+    
+    
     </Grid>
 </Window>

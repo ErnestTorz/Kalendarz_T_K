@@ -128,8 +128,10 @@ namespace Kalendarz_T_K
         {
             year = DateTime.Now.Year;
             month = DateTime.Now.Month;
-            Wybrany_miesiac_jako_int = DateTime.Now.Month;
 
+            Wybrany_dzien_jako_int = DateTime.Now.Day;
+            Wybrany_miesiac_jako_int = DateTime.Now.Month;
+            Wybrany_rok_jako_int= DateTime.Now.Year;
 
             Wybrany_dzien.Text = DateTime.Now.Day.ToString();
             Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM");
