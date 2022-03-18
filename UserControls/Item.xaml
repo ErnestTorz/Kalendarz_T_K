@@ -48,14 +48,14 @@
                VerticalOffset="30" HorizontalOffset="15">
             <Border Background="White" CornerRadius="5" Padding="0 4">
                 <StackPanel>
-                   <!-- <local:MenuButton Icon="Check" Caption="Check"/>
+                    <local:MenuButton Icon="Check" Caption="Check"/>
                     <local:MenuButton Icon="BellSlash" Caption="Mute"/>
                     <local:MenuButton Icon="Pencil" Caption="Edit"/>
-                    <local:MenuButton Icon="Trash" Caption="Delate"/> -->
-                    <Button Width="100" Content="Check"/>
+                    <local:MenuButton Icon="Trash" Caption="Delate" MouseDoubleClick="MenuButton_MouseDoubleClick"/> 
+                    <!--<Button Width="100" Content="Check"/>
                     <Button Content="Mute"/>
                     <Button Content="Edit"/>
-                    <Button Content="Delete" Click="Button_Click"/>
+                    <Button Content="Delete" Click="Button_Click"/>-->
                 </StackPanel>
             </Border>
         </Popup>

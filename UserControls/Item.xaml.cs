@@ -62,10 +62,19 @@ namespace Kalendarz_T_K.UserControls
         }
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(FontAwesome.WPF.FontAwesomeIcon), typeof(Item));
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             StackPanel parent = this.Parent as StackPanel;
-            parent.Children.Clear();
+            parent.Children.Remove(this);
         }
+
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        // {
+        //    StackPanel parent = this.Parent as StackPanel;
+        //    parent.Children.Clear();
+        // }
+
+
     }
 }
