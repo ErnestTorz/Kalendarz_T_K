@@ -53,7 +53,7 @@
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="2">
             <!--  <TextBlock x:Name="Wybrany_dzien"   HorizontalAlignment="Center"  Text="Wybrany_i_dzien" VerticalAlignment="Center" FontSize="27" /> -->
             <StackPanel Orientation="Horizontal" >
-                <TextBlock x:Name="Wybrany_dzien" Margin="0 -4 0 0" Text="16" FontSize="48" Foreground="WhiteSmoke"  VerticalAlignment="Center" />
+                <TextBlock x:Name="Wybrany_dzien" Margin="20 -4 0 0" Text="16" FontSize="48" Foreground="WhiteSmoke"  VerticalAlignment="Center" />
                 <StackPanel Margin="10 0 0 0" VerticalAlignment="Center">
                     <TextBlock  x:Name="Wybrany_miesiac" Text="Styczeń" Foreground="WhiteSmoke" FontSize="20"/>
                     <TextBlock  x:Name="Dzien_tyg" Text="" Foreground="WhiteSmoke" FontSize="14"/>
