@@ -56,7 +56,7 @@
                 <TextBlock x:Name="Wybrany_dzien" Margin="20 -4 0 0" Text="16" FontSize="48" Foreground="WhiteSmoke"  VerticalAlignment="Center" />
                 <StackPanel Margin="10 0 0 0" VerticalAlignment="Center">
                     <TextBlock  x:Name="Wybrany_miesiac" Text="Styczeń" Foreground="WhiteSmoke" FontSize="20"/>
-                    <TextBlock  x:Name="Dzien_tyg" Text="" Foreground="WhiteSmoke" FontSize="14"/>
+                    <TextBlock  x:Name="Dzien_tyg"  Text="Sobota"  Foreground="WhiteSmoke" FontSize="14"/>
 
                 </StackPanel>
 

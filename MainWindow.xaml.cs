@@ -53,6 +53,7 @@ namespace Kalendarz_T_K
             
             Wybrany_dzien.Text = (sender as TextBlock).Text;
             Wybrany_miesiac.Text = courentdate.ToString("MMMM");
+            Dzien_tyg.Text = courentdate.ToString("dddd");
 
             Wybrany_rok_jako_int = year;
             Wybrany_miesiac_jako_int = courentdate.Month;
