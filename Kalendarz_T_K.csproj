@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Event.cs" />
     <Compile Include="UserControls\Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
     </Compile>

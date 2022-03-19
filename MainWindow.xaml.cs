@@ -48,6 +48,7 @@ namespace Kalendarz_T_K
             item.IconBell = FontAwesome.WPF.FontAwesomeIcon.ClockOutline;
             Tablica_zdarzen.Children.Add(item);
             //Koniec Testu
+            
 
 
 
