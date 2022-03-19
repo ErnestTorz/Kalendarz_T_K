@@ -7,7 +7,7 @@
             xmlns:fa="http://schemas.fontawesome.io/icons/"
             xmlns:uc="clr-namespace:Kalendarz_T_K.UserControls"
             mc:Ignorable="d"
-            Title="MainWindow" Height="750" Width="1300" WindowStartupLocation="CenterScreen">
+            Title="Kalendarz" Height="750" Width="1300" WindowStartupLocation="CenterScreen">
     <Grid x:Name="TabDni" Height="719" VerticalAlignment="Bottom" RenderTransformOrigin="0.517,0.531">
       
         <Grid.ColumnDefinitions>
@@ -64,7 +64,7 @@
         </Border>
 
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="3" >
-            <Border Background="FloralWhite" CornerRadius="20" HorizontalAlignment="Center" Width="355" Padding="17 15 5 15">
+            <Border Margin="0 1" Background="FloralWhite" CornerRadius="20" HorizontalAlignment="Center" Width="355" Padding="17 15 5 15">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>

@@ -70,7 +70,7 @@ namespace Kalendarz_T_K
             Dzien_tyg.Text = courentdate.ToString("dddd");
 
             Wybrany_rok_jako_int = year;
-            Wybrany_miesiac_jako_int = courentdate.Month;
+            Wybrany_miesiac_jako_int = month;
             Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
 
             MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
