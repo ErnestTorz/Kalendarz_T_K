@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Kalendarz_T_K
 {
     /// <summary>
@@ -61,49 +62,7 @@ namespace Kalendarz_T_K
 
 
 
-       private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
-       {
-            DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
-            ((sender as TextBlock).Parent as Border).Background = Brushes.LightGreen;
-            
-            Wybrany_dzien.Text = (sender as TextBlock).Text;
-            Wybrany_miesiac.Text = courentdate.ToString("MMMM");
-            Dzien_tyg.Text = courentdate.ToString("dddd");
-
-            Wybrany_rok_jako_int = year;
-            Wybrany_miesiac_jako_int = month;
-            Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
-
-            MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
-        }
-
-        private void DoPrzodu(object sender, RoutedEventArgs e)
-        {
-            if (month < 12)
-            {
-                month++;
-            }
-            else { 
-                month = month-11;
-                year++;
-            }
-            WyswietlDni();
-
-        }
-
-        private void DoTylu(object sender, RoutedEventArgs e)
-        {
-            if (month >1)
-            {
-                month--;
-            }
-            else
-            {
-                month = month + 11;
-                year--;
-            }
-            WyswietlDni();
-        }
+       
 
         private void WyswietlDni()
         {
@@ -180,5 +139,100 @@ namespace Kalendarz_T_K
 
         }
 
+        private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
+        {
+            DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
+            ((sender as TextBlock).Parent as Border).Background = Brushes.LightGreen;
+
+            Wybrany_dzien.Text = (sender as TextBlock).Text;
+            Wybrany_miesiac.Text = courentdate.ToString("MMMM");
+            Dzien_tyg.Text = courentdate.ToString("dddd");
+
+            Wybrany_rok_jako_int = year;
+            Wybrany_miesiac_jako_int = month;
+            Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
+
+            MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
+        }
+
+        private void DoPrzodu(object sender, RoutedEventArgs e)
+        {
+            if (month < 12)
+            {
+                month++;
+            }
+            else
+            {
+                month = month - 11;
+                year++;
+            }
+            WyswietlDni();
+
+        }
+
+        private void DoTylu(object sender, RoutedEventArgs e)
+        {
+            if (month > 1)
+            {
+                month--;
+            }
+            else
+            {
+                month = month + 11;
+                year--;
+            }
+            WyswietlDni();
+        }
+
+        private void lblNote_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtNote.Focus();
+        }
+
+        private void txtNote_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!(string.IsNullOrEmpty(txtNote.Text)) && txtNote.Text.Length > 0)
+            {
+                lblNote.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                lblNote.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void lblTime_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtTime.Focus();
+        }
+
+        private void txtTime_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!(string.IsNullOrEmpty(txtTime.Text)) && txtTime.Text.Length > 0)
+            {
+                lblTime.Visibility = Visibility.Collapsed;
+                
+            }
+            else
+            {
+                lblTime.Visibility = Visibility.Visible;
+            
+            }
+        }
+
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Add_event.Foreground = Brushes.Black;
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Add_event.Foreground = Brushes.Gray;
+        }
+
+        private void Add_Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show(txtNote.Text +" "+ txtTime.Text);
+        }
     }
 }
