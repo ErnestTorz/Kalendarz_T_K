@@ -42,9 +42,9 @@ namespace Kalendarz_T_K
 
             //Test//
                
-            Event zdarzenie=new Event("Test eventu","12:00","13:12",true);
+            Event zdarzenie=new Event("Test eventu","12:00","13:12", Wybrany_dzien_jako_int, Wybrany_miesiac_jako_int, Wybrany_rok_jako_int, true);
             Tablica_zdarzen.Children.Add(zdarzenie.Item);
-            zdarzenie = new Event("Test eventu 2", "12:12", "17:15", true);
+            zdarzenie = new Event("Test eventu 2", "12:12", "17:15", Wybrany_dzien_jako_int, Wybrany_miesiac_jako_int, Wybrany_rok_jako_int, true);
             Tablica_zdarzen.Children.Add(zdarzenie.Item);
 
             //Koniec Testu
@@ -151,7 +151,7 @@ namespace Kalendarz_T_K
             Wybrany_miesiac_jako_int = month;
             Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
 
-            MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
+            //MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
         }
 
         private void DoPrzodu(object sender, RoutedEventArgs e)
@@ -235,7 +235,7 @@ namespace Kalendarz_T_K
             string[] strlist = txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
             if (strlist.Count() == 2 && (txtNote.Text.Length!=0))
             {
-                Event zdarzenie = new Event(txtNote.Text, strlist[0], strlist[1], false);
+                Event zdarzenie = new Event(txtNote.Text, strlist[0], strlist[1], Wybrany_dzien_jako_int, Wybrany_miesiac_jako_int, Wybrany_rok_jako_int, false);
                 Tablica_zdarzen.Children.Add(zdarzenie.Item);
             }
             else

@@ -20,11 +20,17 @@ namespace Kalendarz_T_K
     public class Event
     {
         private Item item = new Item();
-        public Event(string Title, string start_time, string end_time, bool check)
+        public int day;
+        public int month;
+        public int year;
+        public Event(string Title, string start_time, string end_time,int Day,int Month,int Year, bool check)
         {
             item.Title = Title;
             item.Color = Brushes.White;
             item.Time = start_time + " - " + end_time;
+            day = Day;
+            month = Month;
+            year = Year;
             if (check == true)
             {
                 item.Icon = FontAwesome.WPF.FontAwesomeIcon.CheckCircle;
