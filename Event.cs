@@ -24,7 +24,7 @@ namespace Kalendarz_T_K
         {
             item.Title = Title;
             item.Color = Brushes.White;
-            item.Time = start_time + "-" + end_time;
+            item.Time = start_time + " - " + end_time;
             if (check == true)
             {
                 item.Icon = FontAwesome.WPF.FontAwesomeIcon.CheckCircle;
@@ -37,9 +37,9 @@ namespace Kalendarz_T_K
             item.IconBell = FontAwesome.WPF.FontAwesomeIcon.ClockOutline;
             item.Color = Brushes.White;
         }
-        public string Title { 
-            get;
-            set; 
+        public Item Item {
+            get { return item; }
+            set { item = value;} 
         }
         
             

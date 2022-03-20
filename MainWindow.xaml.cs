@@ -41,15 +41,14 @@ namespace Kalendarz_T_K
             WyswietlDni();
 
             //Test//
-            Item item = new Item();
-            item.Title = "Korepetycje";
-            item.Color = Brushes.White;
-            item.Time = "18:00-19:00";
-            item.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin;
-            item.IconBell = FontAwesome.WPF.FontAwesomeIcon.ClockOutline;
-            Tablica_zdarzen.Children.Add(item);
+               
+            Event zdarzenie=new Event("Test eventu","12:00","13:12",true);
+            Tablica_zdarzen.Children.Add(zdarzenie.Item);
+            zdarzenie = new Event("Test eventu 2", "12:12", "17:15", true);
+            Tablica_zdarzen.Children.Add(zdarzenie.Item);
+
             //Koniec Testu
-            
+
 
 
 
@@ -108,7 +107,7 @@ namespace Kalendarz_T_K
             Wybrany_rok_jako_int= DateTime.Now.Year;
 
             Wybrany_dzien.Text = DateTime.Now.Day.ToString();
-            Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM");
+            Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year.ToString();
             Dzien_tyg.Text= DateTime.Now.ToString("dddd");
            
             for (int Row = 0; Row < 6; Row++)
@@ -145,7 +144,7 @@ namespace Kalendarz_T_K
             ((sender as TextBlock).Parent as Border).Background = Brushes.LightGreen;
 
             Wybrany_dzien.Text = (sender as TextBlock).Text;
-            Wybrany_miesiac.Text = courentdate.ToString("MMMM");
+            Wybrany_miesiac.Text = courentdate.ToString("MMMM") + " " + courentdate.Year.ToString();
             Dzien_tyg.Text = courentdate.ToString("dddd");
 
             Wybrany_rok_jako_int = year;
@@ -232,7 +231,17 @@ namespace Kalendarz_T_K
 
         private void Add_Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(txtNote.Text +" "+ txtTime.Text);
+            char[] separator = {' ', '-' };
+            string[] strlist = txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
+            if (strlist.Count() == 2 && (txtNote.Text.Length!=0))
+            {
+                Event zdarzenie = new Event(txtNote.Text, strlist[0], strlist[1], false);
+                Tablica_zdarzen.Children.Add(zdarzenie.Item);
+            }
+            else
+            {
+                MessageBox.Show("Nieprawidłowe dane");
+            }
         }
     }
 }
