@@ -31,7 +31,7 @@ namespace Kalendarz_T_K.UserControls
             get { return (string)GetValue(TitleProperty); }
             set { SetValue(TitleProperty, value); }
         }
-        public static readonly DependencyProperty TitleProperty = DependencyProperty. Register("Title", typeof(string), typeof(Item));
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(Item));
 
 
         public string Time
@@ -82,13 +82,50 @@ namespace Kalendarz_T_K.UserControls
 
         }
 
+        private void MenuButton_MouseDoubleClick_Edit(object sender, MouseButtonEventArgs e)
 
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        // {
-        //    StackPanel parent = this.Parent as StackPanel;
-        //    parent.Children.Clear();
-        // }
+        {
+            ChangeWindow changewin = new ChangeWindow();
+            changewin.ChangeButton.MouseDoubleClick += ChangeButton_MouseDoubleClick;
+            changewin.Owner =Window.GetWindow(this);
+            changewin.lblNote.Text = item.Title;
+            changewin.lblTime.Text = item.Time;
+            changewin.ShowDialog();
 
+        }
 
+        private void ChangeButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ChangeWindow thiswindow = null;
+            //Odnajdywanie okna 
+            foreach (Window window in Application.Current.Windows.OfType<ChangeWindow>())
+            {
+                thiswindow = ((ChangeWindow)window);
+            }
+
+            char[] separator = { ' ', '-' };
+            string[] strlist = thiswindow.txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
+            if (strlist.Count() == 2 && thiswindow.txtNote.Text.Length != 0)
+            {
+                item.Title = thiswindow.txtNote.Text;
+                item.Time = thiswindow.txtTime.Text;
+                thiswindow.Close();
+            }
+            else if (thiswindow.txtNote.Text.Length != 0)
+            {
+                item.Title = thiswindow.txtNote.Text;
+                thiswindow.Close();
+            }
+            else if (strlist.Count() == 2)
+            {
+                item.Time = thiswindow.txtTime.Text;
+                thiswindow.Close();
+            }
+            else
+            {
+                MessageBox.Show("Nieprawidłowe dane przkazane do zmiany");
+            }
+
+        }
     }
 }
