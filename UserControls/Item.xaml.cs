@@ -64,8 +64,15 @@ namespace Kalendarz_T_K.UserControls
 
         private void MenuButton_MouseDoubleClick_Trash(object sender, MouseButtonEventArgs e)
         {
+            MainWindow thiswindow = null;
+            //Odnajdywanie okna 
+            foreach (Window window in Application.Current.Windows.OfType<MainWindow>())
+            {
+                thiswindow = ((MainWindow)window);
+            }
             StackPanel parent = this.Parent as StackPanel;
             parent.Children.Remove(this);
+            thiswindow.Liczba_zadan.Text = thiswindow.Tablica_zdarzen.Children.Count.ToString() + " zadań ";
         }
 
         private void MenuButton_MouseDoubleClick_Check(object sender, MouseButtonEventArgs e)

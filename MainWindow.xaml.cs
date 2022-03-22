@@ -39,29 +39,8 @@ namespace Kalendarz_T_K
             InitializeComponent();
             InitKalendarz(4,1);
             WyswietlDni();
-
-            //Test//
-               
-            Event zdarzenie=new Event("Test eventu","12:00","13:12", Wybrany_dzien_jako_int, Wybrany_miesiac_jako_int, Wybrany_rok_jako_int, true);
-            Tablica_zdarzen.Children.Add(zdarzenie.Item);
-            zdarzenie = new Event("Test eventu 2", "12:12", "17:15", Wybrany_dzien_jako_int, Wybrany_miesiac_jako_int, Wybrany_rok_jako_int, true);
-            Tablica_zdarzen.Children.Add(zdarzenie.Item);
-
-            //Koniec Testu
-
-
-
-
         }
-
-
-
-
-
-
-
-
-       
+               
 
         private void WyswietlDni()
         {
@@ -109,7 +88,10 @@ namespace Kalendarz_T_K
             Wybrany_dzien.Text = DateTime.Now.Day.ToString();
             Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year.ToString();
             Dzien_tyg.Text= DateTime.Now.ToString("dddd");
-           
+
+            Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString()+ " zadań ";
+            Liczba_pozostalych_dni.Text = "- zostało 0 dni";
+
             for (int Row = 0; Row < 6; Row++)
             {
                 for (int Col = 0; Col < 7; Col++)
@@ -151,6 +133,19 @@ namespace Kalendarz_T_K
             Wybrany_miesiac_jako_int = month;
             Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
 
+            Liczba_zadan.Text=Tablica_zdarzen.Children.Count.ToString()+" zadań ";
+            if ((Math.Ceiling((courentdate - DateTime.Now).TotalDays)) <= 0)
+            {
+                Liczba_pozostalych_dni.Text = "- zostało 0 dni";
+            }
+            else if ((Math.Ceiling((courentdate - DateTime.Now).TotalDays)) ==1)
+            {
+                Liczba_pozostalych_dni.Text = "- został 1 dzień";
+            }
+            else
+            {
+                Liczba_pozostalych_dni.Text = "- zostało "+(Math.Ceiling((courentdate - DateTime.Now).TotalDays)).ToString() + " dni";
+            }
             //MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
         }
 
@@ -237,6 +232,8 @@ namespace Kalendarz_T_K
             {
                 Event zdarzenie = new Event(txtNote.Text, strlist[0], strlist[1], Wybrany_dzien_jako_int, Wybrany_miesiac_jako_int, Wybrany_rok_jako_int, false);
                 Tablica_zdarzen.Children.Add(zdarzenie.Item);
+                Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString();
+                Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
             }
             else
             {
