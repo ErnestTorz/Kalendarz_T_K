@@ -232,8 +232,9 @@ namespace Kalendarz_T_K
             {
                 Event zdarzenie = new Event(txtNote.Text, strlist[0], strlist[1], Wybrany_dzien_jako_int, Wybrany_miesiac_jako_int, Wybrany_rok_jako_int, false);
                 Tablica_zdarzen.Children.Add(zdarzenie.Item);
-                Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString();
                 Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
+                txtNote.Text = "";
+                txtTime.Text = "";
             }
             else
             {
