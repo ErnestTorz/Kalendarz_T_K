@@ -39,9 +39,8 @@
                     </Grid>
                 </StackPanel>
                 <Button x:Name="ChangeButton"  Grid.Column="1" Style="{StaticResource button}" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"  >
-                    <!-- <fa:ImageAwesome x:Name="Add_event" Icon="Refresh" Width="37" Height="28" Foreground="Gray"  />-->
-                    <Border x:Name="ChangeButtonBorder" Background="LightGray" CornerRadius="80">
-                        <TextBlock Foreground="White"  x:Name="ChangeButtonText" FontSize="19" Text="Zmień" Margin="5 18"   />
+                         <Border x:Name="ChangeButtonBorder" Background="LightGray" CornerRadius="80">
+                             <TextBlock Foreground="White"  x:Name="ChangeButtonText" FontSize="19" Text="Zmień" Margin="5 18"   />
                     </Border>
                 </Button>
             </Grid>

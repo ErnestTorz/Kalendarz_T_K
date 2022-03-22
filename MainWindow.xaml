@@ -63,15 +63,15 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" >
-                    <TextBlock FontSize="14" Foreground="Gray" Margin="24 2 0 10"  x:Name="Liczba_zadan" Text="5 zadań "/>
-                    <TextBlock FontSize="14" Foreground="Gray"  Margin="0 2 0 10" x:Name="Liczba_pozostalych_dni" Text="- zostały 2 dni"/>
+                    <TextBlock FontSize="14"  Foreground="#FFEDE7E0" Margin="24 2 0 10"  x:Name="Liczba_zadan" Text="5 zadań "/>
+                    <TextBlock FontSize="14" Foreground="#FFF3EDE6"  Margin="0 2 0 10" x:Name="Liczba_pozostalych_dni" Text="- zostały 2 dni"/>
                 </StackPanel>
 
             </StackPanel>
         </Border>
 
         <Border  Background="BurlyWood" Grid.Column="9" Grid.Row="3" >
-            <Border  Background="FloralWhite" CornerRadius="20" HorizontalAlignment="Center" Width="360" Margin="5,4">
+            <Border  Background="#FFE6D4BD" CornerRadius="20" HorizontalAlignment="Center" Width="360" Margin="5,4">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -84,8 +84,8 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <fa:ImageAwesome Margin="15 7" Icon="Pencil" Width="20" Height="20" Foreground="LightGray"/>
-                            <TextBlock Text="Dodaj notatkę" x:Name="lblNote" Style="{StaticResource textHint}" MouseDown="lblNote_MouseDown" />
+                            <fa:ImageAwesome Margin="15 7" Icon="Pencil" Width="20" Height="20"  Foreground="#FFF3EDE6"/>
+                            <TextBlock  Foreground="#FFEDE7E0" Text="Dodaj notatkę" x:Name="lblNote" Style="{StaticResource textHint}" MouseDown="lblNote_MouseDown" />
                             <TextBox x:Name="txtNote" Style="{StaticResource textBox}" TextChanged="txtNote_TextChanged"/>
                         </Grid>
                         <Separator Height="1"   Background="Transparent"/>
@@ -95,13 +95,13 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <fa:ImageAwesome Margin="15 5" Icon="ClockOutline" Width="20" Height="20" Foreground="LightGray"/>
-                            <TextBlock Text="_ _ : _ _ - _ _ : _ _" x:Name="lblTime" Style="{StaticResource textHint}" MouseDown="lblTime_MouseDown" />
-                            <TextBox x:Name="txtTime" Style="{StaticResource textBox}" TextChanged="txtTime_TextChanged"/>
+                            <fa:ImageAwesome Margin="15 5" Icon="ClockOutline" Width="20" Height="20"  Foreground="#FFF3EDE6"/>
+                            <TextBlock  Foreground="#FFF3EDE6" Text="_ _ : _ _ - _ _ : _ _" x:Name="lblTime" Style="{StaticResource textHint}" MouseDown="lblTime_MouseDown" />
+                            <TextBox  x:Name="txtTime" Style="{StaticResource textBox}" TextChanged="txtTime_TextChanged"/>
                         </Grid>
                     </StackPanel>
                     <Button Grid.Column="1" Style="{StaticResource button}" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave" MouseDoubleClick="Add_Button_MouseDoubleClick" >
-                        <fa:ImageAwesome x:Name="Add_event" Icon="PlusCircle" Width="37" Height="28" Foreground="Gray"  />
+                        <fa:ImageAwesome x:Name="Add_event" Icon="PlusCircle" Width="37" Height="28" Foreground="White"   />
                     </Button>
                 </Grid>
             </Border>

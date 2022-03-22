@@ -64,7 +64,7 @@ namespace Kalendarz_T_K
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
-            ChangeButtonBorder.Background = Brushes.Gray;
+            ChangeButtonBorder.Background = Brushes.Black;
             ChangeButtonText.Foreground = Brushes.White;
         }
 

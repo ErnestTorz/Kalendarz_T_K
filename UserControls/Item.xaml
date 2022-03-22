@@ -12,7 +12,7 @@
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <fa:ImageAwesome Icon="{Binding Path=Icon,ElementName=item}" Width="20" Height="20" VerticalAlignment="Center" Foreground="Gray" Grid.Column="0"/>
+        <fa:ImageAwesome Icon="{Binding Path=Icon,ElementName=item}" Width="20" Height="20" VerticalAlignment="Center" Foreground="White" Grid.Column="0"/>
         <StackPanel Grid.Column="1" Margin="10 0">
             <TextBlock FontSize="16" Foreground="{Binding Path=Color,ElementName=item}" Text="{Binding Path=Title,ElementName=item}" />
             <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
@@ -25,7 +25,7 @@
         <ToggleButton x:Name="btnMenu" Grid.Column="2">
             <ToggleButton.Template>
                 <ControlTemplate TargetType="ToggleButton">
-                    <fa:ImageAwesome Icon="EllipsisV" Width="16" Height="16" Foreground="Gray">
+                    <fa:ImageAwesome Icon="EllipsisV" Width="16" Height="16" Foreground="White">
                         <fa:ImageAwesome.Style>
                             <Style TargetType="fa:ImageAwesome">
                                 <Style.Triggers>

@@ -123,7 +123,7 @@ namespace Kalendarz_T_K
         private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
         {
             DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
-            ((sender as TextBlock).Parent as Border).Background = Brushes.LightGreen;
+            ((sender as TextBlock).Parent as Border).Background = Brushes.LightGray;
 
             Wybrany_dzien.Text = (sender as TextBlock).Text;
             Wybrany_miesiac.Text = courentdate.ToString("MMMM") + " " + courentdate.Year.ToString();
@@ -221,7 +221,7 @@ namespace Kalendarz_T_K
 
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
-            Add_event.Foreground = Brushes.Gray;
+            Add_event.Foreground = Brushes.White;
         }
 
         private void Add_Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
