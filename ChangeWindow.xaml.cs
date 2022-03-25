@@ -40,6 +40,7 @@ namespace Kalendarz_T_K
             else
             {
                 lblNote.Visibility = Visibility.Visible;
+               
             }
         }
 

@@ -80,7 +80,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Wydarzenie.cs" />
     <Compile Include="Termin.cs" />
-    <Compile Include="Event.cs" />
     <Compile Include="KalendarContext.cs" />
     <Compile Include="UserControls\Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>

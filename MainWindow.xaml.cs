@@ -58,50 +58,70 @@ namespace Kalendarz_T_K
             foreach(Termin t in Terminy) {
                 if (t.Data.ToString("d") == WybranyTermin.ToString("d"))
                 {
-                    foreach (Wydarzenie w in t.Wydarzenia)
+                    if (t.Wydarzenia.Count > 0)
                     {
-                        Item item = new Item();
-                        item.seter(w);
-                        Tablica_zdarzen.Children.Add(item);
+                        foreach (Wydarzenie w in t.Wydarzenia)
+                        {
+                            Item item = new Item();
+                            item.seter(w);
+                            Tablica_zdarzen.Children.Add(item);
+                        }
                     }
                 }
             }
 
         }
 
-        private void WyswietlDni()
+        public void WyswietlDni()
         {
-            
-            Miesiac_i_rok.Text = month.ToString()+"."+year.ToString();
-            DateTime startofthemonth = new DateTime(year, month, 1);
+            IList<Termin> Terminy;
+            IList<Wydarzenie> Wydarzenia;
+            DateTime courentdate;
+            using (var context = new KalendarContext())
+            {
+                Terminy = context.Terminy.ToList();
+                Wydarzenia = context.Wydarzenia.ToList();
 
-            int days = DateTime.DaysInMonth(year, month);
-            int dayoftheweek = ((int)startofthemonth.DayOfWeek == 0) ? 7 : (int)startofthemonth.DayOfWeek;
-            for (int i =0 ; i < dayoftheweek-1; i++)
-            {
-                TextBlockDaysBase[i].Background = Brushes.Transparent;
-                (TextBlockDaysBase[i].Child as TextBlock).Text = "" ;
-            }
-            int a = 1;
-            for (int i = dayoftheweek-1; i <= days+dayoftheweek - 1; i++)
-            {
-                TextBlockDaysBase[i].Background = Brushes.Transparent;
-                (TextBlockDaysBase[i].Child as TextBlock).Text = a.ToString() ;
-                a++;
-            }
-            for (int i = days + dayoftheweek - 1; i < 42; i++)
-            {
-                TextBlockDaysBase[i].Background = Brushes.Transparent;
-                (TextBlockDaysBase[i].Child as TextBlock).Text ="";
-                
+                Miesiac_i_rok.Text = month.ToString() + "." + year.ToString();
+                DateTime startofthemonth = new DateTime(year, month, 1);
+
+                int days = DateTime.DaysInMonth(year, month);
+                int dayoftheweek = ((int)startofthemonth.DayOfWeek == 0) ? 7 : (int)startofthemonth.DayOfWeek;
+                for (int i = 0; i < dayoftheweek - 1; i++)
+                {
+                    TextBlockDaysBase[i].Background = Brushes.Transparent;
+                    (TextBlockDaysBase[i].Child as TextBlock).Text = "";
+                }
+                int a = 1;
+                for (int i = dayoftheweek - 1; i < days + dayoftheweek - 1; i++)
+                {
+                    TextBlockDaysBase[i].Background = Brushes.Transparent;
+                    (TextBlockDaysBase[i].Child as TextBlock).Text = a.ToString();
+                    courentdate = new DateTime(year, month, a);
+                    foreach (Termin t in Terminy)
+                    {
+                     
+                        if (t.Data.ToString("d") == courentdate.ToString("d"))
+                        {
+                            TextBlockDaysBase[i].Background = Brushes.Gray;
+                        }
+                    }
+                    a++;
+                }
+
+                for (int i = days + dayoftheweek - 1; i < 42; i++)
+                {
+                    TextBlockDaysBase[i].Background = Brushes.Transparent;
+                    (TextBlockDaysBase[i].Child as TextBlock).Text = "";
+
+
+                }
+                if (year == DateTime.Now.Year && month == DateTime.Now.Month)
+                {
+                    TextBlockDaysBase[dayoftheweek - 2 + DateTime.Now.Day].Background = Brushes.OrangeRed;
+                }
 
             }
-            if(year== DateTime.Now.Year && month == DateTime.Now.Month)
-            {
-                TextBlockDaysBase[dayoftheweek - 2 + DateTime.Now.Day].Background = Brushes.OrangeRed;
-            }
-          
-
         }
         private void InitKalendarz(int row_offset, int col_offset)
         {
@@ -152,7 +172,7 @@ namespace Kalendarz_T_K
         private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
         {
             DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
-            ((sender as TextBlock).Parent as Border).Background = Brushes.LightGray;
+           // ((sender as TextBlock).Parent as Border).Background = Brushes.LightGray;
 
             Wybrany_dzien.Text = (sender as TextBlock).Text;
             Wybrany_miesiac.Text = courentdate.ToString("MMMM") + " " + courentdate.Year.ToString();
@@ -295,6 +315,7 @@ namespace Kalendarz_T_K
 
                 }
                 WyswietlWydarzenia();
+                WyswietlDni();
                 Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
                 txtNote.Text = "";
                 txtTime.Text = "";

@@ -25,6 +25,7 @@ namespace Kalendarz_T_K.UserControls
         public Item()
         {
             InitializeComponent();
+            
         }
         public int ID { get; set; }
         
@@ -86,8 +87,12 @@ namespace Kalendarz_T_K.UserControls
 
         private void MenuButton_MouseDoubleClick_Trash(object sender, MouseButtonEventArgs e)
         {
+
             MainWindow thiswindow = null;
             IList<Wydarzenie> wydarzenia;
+            IList<Termin> Terminy;
+            Termin pom;
+            bool usuwac = false;
             //Odnajdywanie okna 
             foreach (Window window in Application.Current.Windows.OfType<MainWindow>())
             {
@@ -98,15 +103,28 @@ namespace Kalendarz_T_K.UserControls
             using (var context = new KalendarContext())
             {
                 wydarzenia = context.Wydarzenia.ToList();
-
+                Terminy =context.Terminy.ToList();
                 foreach (var wyd in wydarzenia)
                 {
                     if (wyd.ID == this.ID)
                     {
-                       context.Wydarzenia.Remove(wyd);
+                        pom = wyd.Termin;
+                        if (wyd.Termin.Wydarzenia.Count <= 1)
+                        {
+                            usuwac = true;
+                        }
+                        else { usuwac = false; }
+                        context.Wydarzenia.Remove(wyd);
                         context.SaveChanges();
+                        if (usuwac == true)
+                        {
+                            context.Terminy.Remove(pom);
+                            context.SaveChanges();
+                            thiswindow.WyswietlDni();
+                        }
                     }
-                }
+                 }
+                
             }
 
             StackPanel parent = this.Parent as StackPanel;
