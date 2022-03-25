@@ -26,6 +26,28 @@ namespace Kalendarz_T_K.UserControls
         {
             InitializeComponent();
         }
+        public int ID { get; set; }
+        
+        public void seter(Wydarzenie wyd)
+        { 
+            this.ID=wyd.ID;
+            this.Title = wyd.Notatka;
+            this.Color = Brushes.White;
+            this.Time = wyd.Godzina_start + " - " + wyd.Godzina_stop;
+           
+            if (wyd.Wykonane == true)
+            {
+                this.Icon = FontAwesome.WPF.FontAwesomeIcon.CheckCircle;
+            }
+            else
+            {
+                this.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin;
+            }
+
+            this.IconBell = FontAwesome.WPF.FontAwesomeIcon.ClockOutline;
+            this.Color = Brushes.White;
+        }
+        
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -65,11 +87,28 @@ namespace Kalendarz_T_K.UserControls
         private void MenuButton_MouseDoubleClick_Trash(object sender, MouseButtonEventArgs e)
         {
             MainWindow thiswindow = null;
+            IList<Wydarzenie> wydarzenia;
             //Odnajdywanie okna 
             foreach (Window window in Application.Current.Windows.OfType<MainWindow>())
             {
                 thiswindow = ((MainWindow)window);
             }
+            
+           
+            using (var context = new KalendarContext())
+            {
+                wydarzenia = context.Wydarzenia.ToList();
+
+                foreach (var wyd in wydarzenia)
+                {
+                    if (wyd.ID == this.ID)
+                    {
+                       context.Wydarzenia.Remove(wyd);
+                        context.SaveChanges();
+                    }
+                }
+            }
+
             StackPanel parent = this.Parent as StackPanel;
             parent.Children.Remove(this);
             thiswindow.Liczba_zadan.Text = thiswindow.Tablica_zdarzen.Children.Count.ToString() + " zadań ";
@@ -77,16 +116,30 @@ namespace Kalendarz_T_K.UserControls
 
         private void MenuButton_MouseDoubleClick_Check(object sender, MouseButtonEventArgs e)
         {
-            StackPanel parent = this.Parent as StackPanel;
-            if (this.Icon == FontAwesome.WPF.FontAwesomeIcon.CircleThin)
+            IList<Wydarzenie> wydarzenia;
+            using (var context = new KalendarContext())
             {
-                this.Icon = FontAwesome.WPF.FontAwesomeIcon.CheckCircle;
-            }
-            else
-            {
-                this.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin;
-            }
+                wydarzenia = context.Wydarzenia.ToList();
 
+                foreach (var wyd in wydarzenia)
+                {
+                    if (wyd.ID == this.ID)
+                    {
+                        if (wyd.Wykonane == false)
+                        {
+                            this.Icon = FontAwesome.WPF.FontAwesomeIcon.CheckCircle;
+                            context.Entry(wyd).Entity.Wykonane = true;  
+                        }
+                        else
+                        {
+                            context.Entry(wyd).Entity.Wykonane = false;
+                        }
+                        context.SaveChanges();
+                    }
+                }
+
+
+            }
         }
 
         private void MenuButton_MouseDoubleClick_Edit(object sender, MouseButtonEventArgs e)
@@ -103,6 +156,7 @@ namespace Kalendarz_T_K.UserControls
 
         private void ChangeButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            IList<Wydarzenie> wydarzenia;
             ChangeWindow thiswindow = null;
             //Odnajdywanie okna 
             foreach (Window window in Application.Current.Windows.OfType<ChangeWindow>())
@@ -112,25 +166,42 @@ namespace Kalendarz_T_K.UserControls
 
             char[] separator = { ' ', '-' };
             string[] strlist = thiswindow.txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
-            if (strlist.Count() == 2 && thiswindow.txtNote.Text.Length != 0)
-            {
-                item.Title = thiswindow.txtNote.Text;
-                item.Time = thiswindow.txtTime.Text;
-                thiswindow.Close();
-            }
-            else if (thiswindow.txtNote.Text.Length != 0)
-            {
-                item.Title = thiswindow.txtNote.Text;
-                thiswindow.Close();
-            }
-            else if (strlist.Count() == 2)
-            {
-                item.Time = thiswindow.txtTime.Text;
-                thiswindow.Close();
-            }
-            else
-            {
-                MessageBox.Show("Nieprawidłowe dane przkazane do zmiany");
+
+            using (var context = new KalendarContext())
+            {   wydarzenia = context.Wydarzenia.ToList();
+                foreach (var wyd in wydarzenia)
+                {
+                    if (wyd.ID == this.ID)
+                    {
+                        if (strlist.Count() == 2 && thiswindow.txtNote.Text.Length != 0)
+                        {
+                            this.Title = thiswindow.txtNote.Text;
+                            this.Time = thiswindow.txtTime.Text;
+                            context.Entry(wyd).Entity.Notatka= thiswindow.txtNote.Text;
+                            context.Entry(wyd).Entity.Godzina_start= strlist[0];
+                            context.Entry(wyd).Entity.Godzina_stop = strlist[1];
+                            thiswindow.Close();
+                        }
+                        else if (thiswindow.txtNote.Text.Length != 0)
+                        {
+                            this.Title = thiswindow.txtNote.Text;
+                            context.Entry(wyd).Entity.Notatka = thiswindow.txtNote.Text;
+                            thiswindow.Close();
+                        }
+                        else if (strlist.Count() == 2)
+                        {
+                            this.Time = thiswindow.txtTime.Text;
+                            context.Entry(wyd).Entity.Godzina_start = strlist[0];
+                            context.Entry(wyd).Entity.Godzina_stop = strlist[1];
+                            thiswindow.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nieprawidłowe dane przkazane do zmiany");
+                        }
+                        context.SaveChanges();
+                    }
+                }
             }
 
         }

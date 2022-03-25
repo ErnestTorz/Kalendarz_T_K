@@ -38,9 +38,36 @@ namespace Kalendarz_T_K
         {
             InitializeComponent();
             InitKalendarz(4,1);
-            WyswietlDni();
+           
         }
+
+        private void WyswietlWydarzenia()
+        {
+            IList<Termin> Terminy;
+            IList<Wydarzenie> Wydarzenia;
+            DateTime WybranyTermin = new DateTime(Wybrany_rok_jako_int, Wybrany_miesiac_jako_int, Wybrany_dzien_jako_int);
+            Tablica_zdarzen.Children.Clear();
+            using (var context = new KalendarContext())
+            {
+                Terminy = context.Terminy.ToList();
+                Wydarzenia = context.Wydarzenia.ToList();
                
+
+            }
+           
+            foreach(Termin t in Terminy) {
+                if (t.Data.ToString("d") == WybranyTermin.ToString("d"))
+                {
+                    foreach (Wydarzenie w in t.Wydarzenia)
+                    {
+                        Item item = new Item();
+                        item.seter(w);
+                        Tablica_zdarzen.Children.Add(item);
+                    }
+                }
+            }
+
+        }
 
         private void WyswietlDni()
         {
@@ -117,6 +144,8 @@ namespace Kalendarz_T_K
 
                 }
             }
+            WyswietlDni();
+            WyswietlWydarzenia();
 
         }
 
@@ -132,6 +161,9 @@ namespace Kalendarz_T_K
             Wybrany_rok_jako_int = year;
             Wybrany_miesiac_jako_int = month;
             Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
+
+            
+            WyswietlWydarzenia();
 
             Liczba_zadan.Text=Tablica_zdarzen.Children.Count.ToString()+" zadań ";
             if ((Math.Ceiling((courentdate - DateTime.Now).TotalDays)) <= 0)
@@ -226,12 +258,43 @@ namespace Kalendarz_T_K
 
         private void Add_Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            DateTime courentdate = new DateTime(Wybrany_rok_jako_int, Wybrany_miesiac_jako_int, Wybrany_dzien_jako_int);
+            IList<Termin> Terminy;
             char[] separator = {' ', '-' };
+            int pomID=-1;
             string[] strlist = txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
             if (strlist.Count() == 2 && (txtNote.Text.Length!=0))
             {
-                Event zdarzenie = new Event(txtNote.Text, strlist[0], strlist[1], Wybrany_dzien_jako_int, Wybrany_miesiac_jako_int, Wybrany_rok_jako_int, false);
-                Tablica_zdarzen.Children.Add(zdarzenie.Item);
+                using (var context = new KalendarContext())
+                {
+                    Terminy = context.Terminy.ToList();
+                }
+                foreach (var ter in Terminy)
+                {
+                    if(ter.Data== courentdate)
+                    {
+                        pomID = ter.ID;
+                    }
+                }
+                if (pomID == -1)
+                {
+                    Termin term = new Termin { Data = courentdate };
+                    using (var context = new KalendarContext())
+                    {
+                        context.Terminy.Add(term);
+                        context.SaveChanges();
+                        pomID=term.ID;
+                    }
+                }
+
+                    Wydarzenie wydarzenie = new Wydarzenie {Notatka=txtNote.Text, Godzina_start=strlist[0], Godzina_stop=strlist[1], TerminID=pomID, Wykonane=false };
+                using (var context = new KalendarContext())
+                {
+                    context.Wydarzenia.Add(wydarzenie);
+                    context.SaveChanges();                  
+
+                }
+                WyswietlWydarzenia();
                 Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
                 txtNote.Text = "";
                 txtTime.Text = "";
