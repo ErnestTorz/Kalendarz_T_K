@@ -21,10 +21,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="3.2*"/>
-            <ColumnDefinition Width="7"/>
+            <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="7"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="1.3*"/>
             <RowDefinition Height="1.35*"/>
             <RowDefinition Height="1.3*"/>
@@ -34,39 +34,38 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="7"/>
+            <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="7">
 
             <Button Style="{StaticResource button}" x:Name="Wstecz"  Click="DoTylu" >
                 <fa:ImageAwesome Icon="AngleLeft" Height="20" Style="{StaticResource angle}" />
             </Button>
-            <TextBlock x:Name="AktualnieWidzianyRokMinus2" Text="2020" FontSize="31" Margin="20 5 20 0" Foreground="#FFABABAB" />
-            <TextBlock x:Name="AktualnieWidzianyRokMinus1" Text="2021" FontSize="31" Margin="20 5 20 0" Foreground="#FFABABAB"  />
-            <TextBlock x:Name="AktualnieWidzianyRok"       Text="2022" FontSize="38" Margin="20 0 20 0" Foreground="BurlyWood" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            <TextBlock x:Name="AktualnieWidzianyRokPlus1"  Text="2023" FontSize="31" Margin="20 5 20 0" Foreground="#FFABABAB" />
-            <TextBlock x:Name="AktualnieWidzianyRokPlus2"  Text="2024" FontSize="31" Margin="20 5 20 0" Foreground="#FFABABAB" />
+            <TextBlock x:Name="AktualnieWidzianyRokMinus2" Text="2020" FontSize="27" Margin="25 5 25 0" Foreground="#FFABABAB" />
+            <TextBlock x:Name="AktualnieWidzianyRokMinus1" Text="2021" FontSize="27" Margin="25 5 25 0" Foreground="#FFABABAB"  />
+            <TextBlock x:Name="AktualnieWidzianyRok"       Text="2022" FontSize="33" Margin="25 0 25 0" Foreground="BurlyWood" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock x:Name="AktualnieWidzianyRokPlus1"  Text="2023" FontSize="27" Margin="25 5 25 0" Foreground="#FFABABAB" />
+            <TextBlock x:Name="AktualnieWidzianyRokPlus2"  Text="2024" FontSize="27" Margin="25 5 25 0" Foreground="#FFABABAB" />
             <Button Style="{StaticResource button}" x:Name="Doprzodu"   Click="DoPrzodu" >
                 <fa:ImageAwesome Icon="AngleRight" Height="20" Style="{StaticResource angle}" />
             </Button>
 
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="7">
-
-            <TextBlock   Text="1"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="2"  FontSize="22" Margin="20 0" Foreground="#FFABABAB"  />
-            <TextBlock   Text="3"  FontSize="22" Margin="20 0" Foreground="BurlyWood" />
-            <TextBlock   Text="4"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="5"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="6"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="7"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="8"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="9"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="10" FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="11" FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
-            <TextBlock   Text="12" FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+        <StackPanel x:Name="MonthsPanel" Margin="0 -20 0 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="7">
+            
+            <Button  x:Name="m1"  Content="1"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m2"  Content="2"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m3"  Content="3"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m4"  Content="4"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m5"  Content="5"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m6"  Content="6"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m7"  Content="7"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m8"  Content="8"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m9"  Content="9"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m10" Content="10" Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m11" Content="11" Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
+            <Button  x:Name="m12" Content="12" Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
             
         </StackPanel>
         <Separator Background="Gray" Height="0.8" Margin="30 70 30 10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" /> 

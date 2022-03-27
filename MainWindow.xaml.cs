@@ -101,7 +101,7 @@ namespace Kalendarz_T_K
                 Terminy = context.Terminy.ToList();
                 Wydarzenia = context.Wydarzenia.ToList();
 
-                AktualnieWidzianyRok.Text = month.ToString() + "." + year.ToString();
+                AktualnieWidzianyRok.Text = year.ToString();
                 DateTime startofthemonth = new DateTime(year, month, 1);
 
                 int days = DateTime.DaysInMonth(year, month);
@@ -157,6 +157,15 @@ namespace Kalendarz_T_K
 
             Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString()+ " zadań ";
             Liczba_pozostalych_dni.Text = "- zostało 0 dni";
+
+            AktualnieWidzianyRokMinus2.Text = (year - 2).ToString();
+            AktualnieWidzianyRokMinus1.Text = (year - 1).ToString();
+            AktualnieWidzianyRok.Text = year.ToString();
+            AktualnieWidzianyRokPlus1.Text = (year + 1).ToString();
+            AktualnieWidzianyRokPlus2.Text = (year + 2).ToString();
+
+            (MonthsPanel.Children[month-1] as Button).Foreground = Brushes.BurlyWood;
+            (MonthsPanel.Children[month - 1] as Button).FontSize = 24;
 
             for (int Row = 0; Row < 6; Row++)
             {
@@ -222,30 +231,25 @@ namespace Kalendarz_T_K
 
         private void DoPrzodu(object sender, RoutedEventArgs e)
         {
-            if (month < 12)
-            {
-                month++;
-            }
-            else
-            {
-                month = month - 11;
-                year++;
-            }
+            year++;
+            AktualnieWidzianyRokMinus2.Text = (year - 2).ToString();
+            AktualnieWidzianyRokMinus1.Text = (year - 1).ToString();
+            AktualnieWidzianyRok.Text = year.ToString();
+            AktualnieWidzianyRokPlus1.Text = (year + 1).ToString();
+            AktualnieWidzianyRokPlus2.Text = (year + 2).ToString();
             WyswietlDni();
+           
 
         }
 
         private void DoTylu(object sender, RoutedEventArgs e)
         {
-            if (month > 1)
-            {
-                month--;
-            }
-            else
-            {
-                month = month + 11;
-                year--;
-            }
+            year--;
+            AktualnieWidzianyRokMinus2.Text = (year - 2).ToString();
+            AktualnieWidzianyRokMinus1.Text = (year - 1).ToString();
+            AktualnieWidzianyRok.Text       = year.ToString();
+            AktualnieWidzianyRokPlus1.Text = (year+1).ToString();
+            AktualnieWidzianyRokPlus2.Text = (year+2).ToString();
             WyswietlDni();
         }
 
@@ -343,6 +347,38 @@ namespace Kalendarz_T_K
             {
                 MessageBox.Show("Nieprawidłowe dane");
             }
+        }
+
+        private void MonthSelectClick(object sender, RoutedEventArgs e)
+        {
+            m1.Foreground = Brushes.LightGray; m1.FontSize = 20;
+            m2.Foreground = Brushes.LightGray; m2.FontSize = 20;
+            m3.Foreground = Brushes.LightGray; m3.FontSize = 20;
+            m4.Foreground = Brushes.LightGray; m4.FontSize = 20;
+            m5.Foreground = Brushes.LightGray; m5.FontSize = 20;
+            m6.Foreground = Brushes.LightGray; m6.FontSize = 20;
+            m7.Foreground = Brushes.LightGray; m7.FontSize = 20;
+            m8.Foreground = Brushes.LightGray; m8.FontSize = 20;
+            m9.Foreground = Brushes.LightGray; m9.FontSize = 20;
+            m10.Foreground = Brushes.LightGray; m10.FontSize = 20;
+            m11.Foreground = Brushes.LightGray; m11.FontSize = 20;
+            m12.Foreground = Brushes.LightGray; m12.FontSize = 20;
+
+            (sender as Button).FontSize = 24;
+            (sender as Button).Foreground = Brushes.BurlyWood;
+            month = Int32.Parse((sender as Button).Content.ToString());
+
+            if(DateTime.Now.Year==year && month != DateTime.Now.Month)
+            {
+                (MonthsPanel.Children[DateTime.Now.Month - 1] as Button).Foreground = Brushes.IndianRed;
+            }
+
+            WyswietlDni();
+        }
+
+        private void WsteczMonth_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
