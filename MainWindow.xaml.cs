@@ -38,7 +38,9 @@ namespace Kalendarz_T_K
         {
             InitializeComponent();
             InitKalendarz(4,1);
-           
+            TestBazy();
+
+
         }
 
         private void WyswietlWydarzenia()
@@ -51,9 +53,7 @@ namespace Kalendarz_T_K
             {
                 Terminy = context.Terminy.ToList();
                 Wydarzenia = context.Wydarzenia.ToList();
-               
-
-            }
+             }
            
             foreach(Termin t in Terminy) {
                 if (t.Data.ToString("d") == WybranyTermin.ToString("d"))
@@ -71,6 +71,25 @@ namespace Kalendarz_T_K
             }
 
         }
+        private void TestBazy()
+        {
+            IList<Termin> Terminy;
+            IList<Wydarzenie> Wydarzenia;
+            using (var context = new KalendarContext())
+            {
+                Terminy = context.Terminy.ToList();
+                Wydarzenia = context.Wydarzenia.ToList();
+            }
+            foreach (Termin t in Terminy)
+            {
+                MessageBox.Show("ID: " + t.ID.ToString() + ", "+t.Data.ToString("d"));
+            }
+            foreach (Wydarzenie w in Wydarzenia)
+            {
+                MessageBox.Show("ID: " + w.ID.ToString() + ", " + w.Notatka+", "+w.TerminID.ToString());
+            }
+
+        }
 
         public void WyswietlDni()
         {
@@ -82,7 +101,7 @@ namespace Kalendarz_T_K
                 Terminy = context.Terminy.ToList();
                 Wydarzenia = context.Wydarzenia.ToList();
 
-                Miesiac_i_rok.Text = month.ToString() + "." + year.ToString();
+                AktualnieWidzianyRok.Text = month.ToString() + "." + year.ToString();
                 DateTime startofthemonth = new DateTime(year, month, 1);
 
                 int days = DateTime.DaysInMonth(year, month);
@@ -103,7 +122,7 @@ namespace Kalendarz_T_K
                      
                         if (t.Data.ToString("d") == courentdate.ToString("d"))
                         {
-                            TextBlockDaysBase[i].Background = Brushes.Gray;
+                            TextBlockDaysBase[i].Background = Brushes.LightGray;
                         }
                     }
                     a++;
@@ -155,7 +174,7 @@ namespace Kalendarz_T_K
 
                     TextBlockDaysBase[(Row * 7) + Col].Background = Brushes.Transparent;
                     TextBlockDaysBase[(Row * 7) + Col].CornerRadius = new CornerRadius(360);
-                    TextBlockDaysBase[(Row * 7) + Col].Margin = new Thickness(40, 20, 40, 20);
+                    TextBlockDaysBase[(Row * 7) + Col].Margin = new Thickness(45, 18, 45, 18);
                     Grid.SetRow(TextBlockDaysBase[(Row * 7) + Col], Row + row_offset);
                     Grid.SetColumn(TextBlockDaysBase[(Row * 7) + Col], Col + col_offset);
 

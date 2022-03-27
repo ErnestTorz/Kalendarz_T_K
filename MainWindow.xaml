@@ -37,18 +37,47 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="7"/>
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="7">
 
-        <Button x:Name="Doprzodu" Grid.Row="1" Grid.Column="6" Content="&gt;" HorizontalAlignment="Center" VerticalAlignment="Center" Width="30" Click="DoPrzodu" Height="30"/>
-        <TextBlock x:Name="Miesiac_i_rok" Grid.Column="3" HorizontalAlignment="Center"  Grid.Row="1"  Text="Miesiąc i Rok" VerticalAlignment="Center" FontSize="30"  Height="54" Grid.ColumnSpan="3"/>
-        <Button x:Name="Wstecz" Grid.Row="1" Grid.Column="2" Content="&lt;" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="30" Click="DoTylu" Height="30"/>
+            <Button Style="{StaticResource button}" x:Name="Wstecz"  Click="DoTylu" >
+                <fa:ImageAwesome Icon="AngleLeft" Height="20" Style="{StaticResource angle}" />
+            </Button>
+            <TextBlock x:Name="AktualnieWidzianyRokMinus2" Text="2020" FontSize="31" Margin="20 5 20 0" Foreground="#FFABABAB" />
+            <TextBlock x:Name="AktualnieWidzianyRokMinus1" Text="2021" FontSize="31" Margin="20 5 20 0" Foreground="#FFABABAB"  />
+            <TextBlock x:Name="AktualnieWidzianyRok"       Text="2022" FontSize="38" Margin="20 0 20 0" Foreground="BurlyWood" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock x:Name="AktualnieWidzianyRokPlus1"  Text="2023" FontSize="31" Margin="20 5 20 0" Foreground="#FFABABAB" />
+            <TextBlock x:Name="AktualnieWidzianyRokPlus2"  Text="2024" FontSize="31" Margin="20 5 20 0" Foreground="#FFABABAB" />
+            <Button Style="{StaticResource button}" x:Name="Doprzodu"   Click="DoPrzodu" >
+                <fa:ImageAwesome Icon="AngleRight" Height="20" Style="{StaticResource angle}" />
+            </Button>
 
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="Poniedziałek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="3" Grid.Column="2" Text="Wtorek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="3" Grid.Column="3" Text="Środa" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="3" Grid.Column="4" Text="Czwartek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="3" Grid.Column="5" Text="Piątek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="3" Grid.Column="6" Text="Sobota" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
-        <TextBlock Grid.Row="3" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="7">
+
+            <TextBlock   Text="1"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="2"  FontSize="22" Margin="20 0" Foreground="#FFABABAB"  />
+            <TextBlock   Text="3"  FontSize="22" Margin="20 0" Foreground="BurlyWood" />
+            <TextBlock   Text="4"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="5"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="6"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="7"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="8"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="9"  FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="10" FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="11" FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            <TextBlock   Text="12" FontSize="22" Margin="20 0" Foreground="#FFABABAB" />
+            
+        </StackPanel>
+        <Separator Background="Gray" Height="0.8" Margin="30 70 30 10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" /> 
+
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Poniedziałek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
+        <TextBlock Grid.Row="3" Grid.Column="2" Text="Wtorek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="Środa" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
+        <TextBlock Grid.Row="3" Grid.Column="4" Text="Czwartek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
+        <TextBlock Grid.Row="3" Grid.Column="5" Text="Piątek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
+        <TextBlock Grid.Row="3" Grid.Column="6" Text="Sobota" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
+        <TextBlock Grid.Row="3" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
 
         <Border Background="LightBlue" Grid.Column="9" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="1">
         </Border>
@@ -110,7 +139,7 @@
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="4" Grid.RowSpan="7">
             <ScrollViewer>
                 <StackPanel  x:Name="Tablica_zdarzen" >
-                   <!-- <uc:Item Title="Kawa z Robertem" Time="12:00 - 13:00" Color="White" Icon="CircleThin" IconBell="ClockOutline"/>
+                    <!-- <uc:Item Title="Kawa z Robertem" Time="12:00 - 13:00" Color="White" Icon="CircleThin" IconBell="ClockOutline"/>
                     <uc:Item Title="Kawa z Alą" Time="14:00 - 15:00" Color="White" Icon="CheckCircle" IconBell="ClockOutline"/>
                     <uc:Item Title="Długi tekst w celach testowych !!!" Time="14:00 - 15:00" Color="White" Icon="CheckCircle" IconBell="ClockOutline"/>
                     <uc:Item Title="Długi tekst w celach testowych !!!" Time="14:00 - 15:00" Color="White" Icon="CheckCircle" IconBell="ClockOutline"/>
