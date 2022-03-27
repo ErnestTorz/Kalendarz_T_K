@@ -137,7 +137,7 @@ namespace Kalendarz_T_K
                 }
                 if (year == DateTime.Now.Year && month == DateTime.Now.Month)
                 {
-                    TextBlockDaysBase[dayoftheweek - 2 + DateTime.Now.Day].Background = Brushes.OrangeRed;
+                    TextBlockDaysBase[dayoftheweek - 2 + DateTime.Now.Day].Background = Brushes.IndianRed;
                 }
 
             }
@@ -237,6 +237,49 @@ namespace Kalendarz_T_K
             AktualnieWidzianyRok.Text = year.ToString();
             AktualnieWidzianyRokPlus1.Text = (year + 1).ToString();
             AktualnieWidzianyRokPlus2.Text = (year + 2).ToString();
+
+            AktualnieWidzianyRokMinus2.Foreground = Brushes.LightGray;
+            AktualnieWidzianyRokMinus1.Foreground = Brushes.LightGray;
+            AktualnieWidzianyRokPlus1.Foreground = Brushes.LightGray;
+            AktualnieWidzianyRokPlus2.Foreground = Brushes.LightGray;
+
+            if(year!=DateTime.Now.Year)
+            {
+                if (year - DateTime.Now.Year <= 2 && year - DateTime.Now.Year > 0)
+                {
+                    (yearPanel.Children[3- (year - DateTime.Now.Year)] as TextBlock).Foreground = Brushes.IndianRed;
+                }
+
+                if (year - DateTime.Now.Year >= -2 && year - DateTime.Now.Year < 0)
+                {
+                    (yearPanel.Children[3 - (year - DateTime.Now.Year)] as TextBlock).Foreground = Brushes.IndianRed;
+                }
+            }
+
+            m1.Foreground = Brushes.LightGray; m1.FontSize = 20;
+            m2.Foreground = Brushes.LightGray; m2.FontSize = 20;
+            m3.Foreground = Brushes.LightGray; m3.FontSize = 20;
+            m4.Foreground = Brushes.LightGray; m4.FontSize = 20;
+            m5.Foreground = Brushes.LightGray; m5.FontSize = 20;
+            m6.Foreground = Brushes.LightGray; m6.FontSize = 20;
+            m7.Foreground = Brushes.LightGray; m7.FontSize = 20;
+            m8.Foreground = Brushes.LightGray; m8.FontSize = 20;
+            m9.Foreground = Brushes.LightGray; m9.FontSize = 20;
+            m10.Foreground = Brushes.LightGray; m10.FontSize = 20;
+            m11.Foreground = Brushes.LightGray; m11.FontSize = 20;
+            m12.Foreground = Brushes.LightGray; m12.FontSize = 20;
+
+            (MonthsPanel.Children[month - 1] as Button).FontSize = 24;
+            (MonthsPanel.Children[month - 1] as Button).Foreground = Brushes.BurlyWood;
+
+
+            if (DateTime.Now.Year == year && month != DateTime.Now.Month)
+            {
+                (MonthsPanel.Children[DateTime.Now.Month - 1] as Button).Foreground = Brushes.IndianRed;
+            }
+
+
+
             WyswietlDni();
            
 
@@ -250,6 +293,50 @@ namespace Kalendarz_T_K
             AktualnieWidzianyRok.Text       = year.ToString();
             AktualnieWidzianyRokPlus1.Text = (year+1).ToString();
             AktualnieWidzianyRokPlus2.Text = (year+2).ToString();
+
+            AktualnieWidzianyRokMinus2.Foreground = Brushes.LightGray;
+            AktualnieWidzianyRokMinus1.Foreground = Brushes.LightGray;
+            AktualnieWidzianyRokPlus1.Foreground = Brushes.LightGray;
+            AktualnieWidzianyRokPlus2.Foreground = Brushes.LightGray;
+
+            if (year != DateTime.Now.Year)
+            {
+                if (year - DateTime.Now.Year <= 2 && year - DateTime.Now.Year > 0)
+                {
+                    (yearPanel.Children[3 - (year - DateTime.Now.Year)] as TextBlock).Foreground = Brushes.IndianRed;
+                }
+
+                if (year - DateTime.Now.Year >= -2 && year - DateTime.Now.Year < 0)
+                {
+                    (yearPanel.Children[3 - (year - DateTime.Now.Year)] as TextBlock).Foreground = Brushes.IndianRed;
+                }
+            }
+
+            m1.Foreground = Brushes.LightGray; m1.FontSize = 20;
+            m2.Foreground = Brushes.LightGray; m2.FontSize = 20;
+            m3.Foreground = Brushes.LightGray; m3.FontSize = 20;
+            m4.Foreground = Brushes.LightGray; m4.FontSize = 20;
+            m5.Foreground = Brushes.LightGray; m5.FontSize = 20;
+            m6.Foreground = Brushes.LightGray; m6.FontSize = 20;
+            m7.Foreground = Brushes.LightGray; m7.FontSize = 20;
+            m8.Foreground = Brushes.LightGray; m8.FontSize = 20;
+            m9.Foreground = Brushes.LightGray; m9.FontSize = 20;
+            m10.Foreground = Brushes.LightGray; m10.FontSize = 20;
+            m11.Foreground = Brushes.LightGray; m11.FontSize = 20;
+            m12.Foreground = Brushes.LightGray; m12.FontSize = 20;
+
+            (MonthsPanel.Children[month - 1] as Button).FontSize = 24;
+            (MonthsPanel.Children[month - 1] as Button).Foreground = Brushes.BurlyWood;
+
+
+            if (DateTime.Now.Year == year && month != DateTime.Now.Month)
+            {
+                (MonthsPanel.Children[DateTime.Now.Month - 1] as Button).Foreground = Brushes.IndianRed;
+            }
+
+
+
+
             WyswietlDni();
         }
 
@@ -376,9 +463,6 @@ namespace Kalendarz_T_K
             WyswietlDni();
         }
 
-        private void WsteczMonth_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
     }
 }

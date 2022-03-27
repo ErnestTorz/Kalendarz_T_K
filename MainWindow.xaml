@@ -36,7 +36,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="7">
+        <StackPanel x:Name="yearPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="1"  Grid.ColumnSpan="7">
 
             <Button Style="{StaticResource button}" x:Name="Wstecz"  Click="DoTylu" >
                 <fa:ImageAwesome Icon="AngleLeft" Height="20" Style="{StaticResource angle}" />
