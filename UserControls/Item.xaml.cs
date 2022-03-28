@@ -184,6 +184,10 @@ namespace Kalendarz_T_K.UserControls
 
             char[] separator = { ' ', '-' };
             string[] strlist = thiswindow.txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < strlist.Length; i++)
+            {
+                strlist[i] = strlist[i].Replace(" ", String.Empty);
+            }
             DateTime result1;
             DateTime result2;
 
@@ -193,7 +197,7 @@ namespace Kalendarz_T_K.UserControls
                 {
                     if (wyd.ID == this.ID)
                     {
-                        if (strlist.Count() == 2 && thiswindow.txtNote.Text.Length != 0 && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
+                        if (strlist.Count() == 2 && thiswindow.txtNote.Text.Length != 0 && thiswindow.txtNote.Text.Count(char.IsWhiteSpace) != thiswindow.txtNote.Text.Length && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
                         {
                             if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
                             {
@@ -211,7 +215,7 @@ namespace Kalendarz_T_K.UserControls
                             
 
                         }
-                        else if (thiswindow.txtNote.Text.Length != 0 && thiswindow.txtTime.Text.Length == 0)
+                        else if (thiswindow.txtNote.Text.Length != 0 && thiswindow.txtNote.Text.Count(char.IsWhiteSpace) != thiswindow.txtNote.Text.Length && thiswindow.txtTime.Text.Length == 0)
                         {
                             this.Title = thiswindow.txtNote.Text;
                             context.Entry(wyd).Entity.Notatka = thiswindow.txtNote.Text;

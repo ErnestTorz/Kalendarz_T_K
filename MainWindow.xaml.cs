@@ -396,7 +396,13 @@ namespace Kalendarz_T_K
             DateTime result1;
             DateTime result2;
             string[] strlist = txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
-            if (strlist.Count() == 2 && (txtNote.Text.Length != 0) && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
+            for(int i = 0; i < strlist.Length; i++)
+            {
+                strlist[i] = strlist[i].Replace(" ", String.Empty);
+            }
+
+
+            if (strlist.Count() == 2 && (txtNote.Text.Length != 0) &&txtNote.Text.Count(char.IsWhiteSpace)!=txtNote.Text.Length && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
             {
                 if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
                 {
