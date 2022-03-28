@@ -176,10 +176,18 @@ namespace Kalendarz_T_K.UserControls
         {
             IList<Wydarzenie> wydarzenia;
             ChangeWindow thiswindow = null;
+            MainWindow mainwindow = null;
+
+
             //Odnajdywanie okna 
             foreach (Window window in Application.Current.Windows.OfType<ChangeWindow>())
             {
                 thiswindow = ((ChangeWindow)window);
+            }
+
+            foreach (Window window in Application.Current.Windows.OfType<MainWindow>())
+            {
+                mainwindow = ((MainWindow)window);
             }
 
             char[] separator = { ' ', '-' };
@@ -201,12 +209,14 @@ namespace Kalendarz_T_K.UserControls
                         {
                             if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
                             {
-                                this.Title = thiswindow.txtNote.Text;
-                                this.Time = thiswindow.txtTime.Text;
+                               // this.Title = thiswindow.txtNote.Text;
+                                //this.Time = thiswindow.txtTime.Text;
                                 context.Entry(wyd).Entity.Notatka = thiswindow.txtNote.Text;
                                 context.Entry(wyd).Entity.Godzina_start = strlist[0];
                                 context.Entry(wyd).Entity.Godzina_stop = strlist[1];
                                 thiswindow.Close();
+                                context.SaveChanges();
+                                mainwindow.WyswietlWydarzenia();
                             }
                             else
                             {
@@ -220,15 +230,20 @@ namespace Kalendarz_T_K.UserControls
                             this.Title = thiswindow.txtNote.Text;
                             context.Entry(wyd).Entity.Notatka = thiswindow.txtNote.Text;
                             thiswindow.Close();
+                            context.SaveChanges();
+                            mainwindow.WyswietlWydarzenia();
                         }
                         else if (thiswindow.txtNote.Text.Length==0 && strlist.Count() == 2 && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
                         {
                             if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
                             {
-                                this.Time = thiswindow.txtTime.Text;
+                               // this.Time = thiswindow.txtTime.Text;
                                 context.Entry(wyd).Entity.Godzina_start = strlist[0];
                                 context.Entry(wyd).Entity.Godzina_stop = strlist[1];
                                 thiswindow.Close();
+                                context.SaveChanges();
+                                mainwindow.WyswietlWydarzenia();
+
                             }
                             else
                             {
@@ -239,7 +254,7 @@ namespace Kalendarz_T_K.UserControls
                         {
                             MessageBox.Show("Nieprawidłowe dane przkazane do zmiany");
                         }
-                        context.SaveChanges();
+                        
                     }
                 }
             }

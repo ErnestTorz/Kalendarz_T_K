@@ -38,31 +38,39 @@ namespace Kalendarz_T_K
         {
             InitializeComponent();
             InitKalendarz(4, 1);
-            TestBazy();
+           // TestBazy();
 
 
         }
 
-        private void WyswietlWydarzenia()
+        public void WyswietlWydarzenia()
         {
             IList<Termin> Terminy;
-            IList<Wydarzenie> Wydarzenia;
+            IList<Wydarzenie> WydarzeniaWczyt;
+            List<Wydarzenie> Wydarzeniapom;
+            List<Wydarzenie> Wydarzenia;
             DateTime WybranyTermin = new DateTime(Wybrany_rok_jako_int, Wybrany_miesiac_jako_int, Wybrany_dzien_jako_int);
             Tablica_zdarzen.Children.Clear();
             using (var context = new KalendarContext())
             {
                 Terminy = context.Terminy.ToList();
-                Wydarzenia = context.Wydarzenia.ToList();
+                WydarzeniaWczyt = context.Wydarzenia.ToList();
             }
-
+           
+            
+           
             foreach (Termin t in Terminy)
             {
                 if (t.Data.ToString("d") == WybranyTermin.ToString("d"))
                 {
                     if (t.Wydarzenia.Count > 0)
                     {
-                        foreach (Wydarzenie w in t.Wydarzenia)
+                        Wydarzeniapom=t.Wydarzenia.ToList();
+                        Wydarzenia = Wydarzeniapom.OrderBy(o => o.Godzina_start).ThenBy(o=>o.Godzina_stop).ToList();
+
+                        foreach (Wydarzenie w in Wydarzenia)
                         {
+                            
                             Item item = new Item();
                             item.seter(w);
                             Tablica_zdarzen.Children.Add(item);
