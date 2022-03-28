@@ -184,6 +184,8 @@ namespace Kalendarz_T_K.UserControls
 
             char[] separator = { ' ', '-' };
             string[] strlist = thiswindow.txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
+            DateTime result1;
+            DateTime result2;
 
             using (var context = new KalendarContext())
             {   wydarzenia = context.Wydarzenia.ToList();
@@ -191,27 +193,43 @@ namespace Kalendarz_T_K.UserControls
                 {
                     if (wyd.ID == this.ID)
                     {
-                        if (strlist.Count() == 2 && thiswindow.txtNote.Text.Length != 0)
+                        if (strlist.Count() == 2 && thiswindow.txtNote.Text.Length != 0 && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
                         {
-                            this.Title = thiswindow.txtNote.Text;
-                            this.Time = thiswindow.txtTime.Text;
-                            context.Entry(wyd).Entity.Notatka= thiswindow.txtNote.Text;
-                            context.Entry(wyd).Entity.Godzina_start= strlist[0];
-                            context.Entry(wyd).Entity.Godzina_stop = strlist[1];
-                            thiswindow.Close();
+                            if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
+                            {
+                                this.Title = thiswindow.txtNote.Text;
+                                this.Time = thiswindow.txtTime.Text;
+                                context.Entry(wyd).Entity.Notatka = thiswindow.txtNote.Text;
+                                context.Entry(wyd).Entity.Godzina_start = strlist[0];
+                                context.Entry(wyd).Entity.Godzina_stop = strlist[1];
+                                thiswindow.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nieprawidłowe dane przkazane do zmiany");
+                            }
+                            
+
                         }
-                        else if (thiswindow.txtNote.Text.Length != 0)
+                        else if (thiswindow.txtNote.Text.Length != 0 && thiswindow.txtTime.Text.Length == 0)
                         {
                             this.Title = thiswindow.txtNote.Text;
                             context.Entry(wyd).Entity.Notatka = thiswindow.txtNote.Text;
                             thiswindow.Close();
                         }
-                        else if (strlist.Count() == 2)
+                        else if (thiswindow.txtNote.Text.Length==0 && strlist.Count() == 2 && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
                         {
-                            this.Time = thiswindow.txtTime.Text;
-                            context.Entry(wyd).Entity.Godzina_start = strlist[0];
-                            context.Entry(wyd).Entity.Godzina_stop = strlist[1];
-                            thiswindow.Close();
+                            if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
+                            {
+                                this.Time = thiswindow.txtTime.Text;
+                                context.Entry(wyd).Entity.Godzina_start = strlist[0];
+                                context.Entry(wyd).Entity.Godzina_stop = strlist[1];
+                                thiswindow.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nieprawidłowe dane przkazane do zmiany");
+                            }
                         }
                         else
                         {

@@ -21,13 +21,13 @@ namespace Kalendarz_T_K
     /// Logika interakcji dla klasy MainWindow.xaml
     /// </summary>
     /// 
-    
+
     public partial class MainWindow : Window
     {
         TextBlock[] TextBlockDays = new TextBlock[42];
-        Border [] TextBlockDaysBase = new Border[42];
+        Border[] TextBlockDaysBase = new Border[42];
 
-        int year ;
+        int year;
         int month;
 
         int Wybrany_dzien_jako_int;
@@ -37,7 +37,7 @@ namespace Kalendarz_T_K
         public MainWindow()
         {
             InitializeComponent();
-            InitKalendarz(4,1);
+            InitKalendarz(4, 1);
             TestBazy();
 
 
@@ -53,9 +53,10 @@ namespace Kalendarz_T_K
             {
                 Terminy = context.Terminy.ToList();
                 Wydarzenia = context.Wydarzenia.ToList();
-             }
-           
-            foreach(Termin t in Terminy) {
+            }
+
+            foreach (Termin t in Terminy)
+            {
                 if (t.Data.ToString("d") == WybranyTermin.ToString("d"))
                 {
                     if (t.Wydarzenia.Count > 0)
@@ -82,11 +83,11 @@ namespace Kalendarz_T_K
             }
             foreach (Termin t in Terminy)
             {
-                MessageBox.Show("ID: " + t.ID.ToString() + ", "+t.Data.ToString("d"));
+                MessageBox.Show("ID: " + t.ID.ToString() + ", " + t.Data.ToString("d"));
             }
             foreach (Wydarzenie w in Wydarzenia)
             {
-                MessageBox.Show("ID: " + w.ID.ToString() + ", " + w.Notatka+", "+w.TerminID.ToString());
+                MessageBox.Show("ID: " + w.ID.ToString() + ", " + w.Notatka + ", " + w.TerminID.ToString());
             }
 
         }
@@ -119,7 +120,7 @@ namespace Kalendarz_T_K
                     courentdate = new DateTime(year, month, a);
                     foreach (Termin t in Terminy)
                     {
-                     
+
                         if (t.Data.ToString("d") == courentdate.ToString("d"))
                         {
                             TextBlockDaysBase[i].Background = Brushes.LightGray;
@@ -149,13 +150,13 @@ namespace Kalendarz_T_K
 
             Wybrany_dzien_jako_int = DateTime.Now.Day;
             Wybrany_miesiac_jako_int = DateTime.Now.Month;
-            Wybrany_rok_jako_int= DateTime.Now.Year;
+            Wybrany_rok_jako_int = DateTime.Now.Year;
 
             Wybrany_dzien.Text = DateTime.Now.Day.ToString();
             Wybrany_miesiac.Text = DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year.ToString();
-            Dzien_tyg.Text= DateTime.Now.ToString("dddd");
+            Dzien_tyg.Text = DateTime.Now.ToString("dddd");
 
-            Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString()+ " zadań ";
+            Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
             Liczba_pozostalych_dni.Text = "- zostało 0 dni";
 
             AktualnieWidzianyRokMinus2.Text = (year - 2).ToString();
@@ -164,7 +165,7 @@ namespace Kalendarz_T_K
             AktualnieWidzianyRokPlus1.Text = (year + 1).ToString();
             AktualnieWidzianyRokPlus2.Text = (year + 2).ToString();
 
-            (MonthsPanel.Children[month-1] as Button).Foreground = Brushes.BurlyWood;
+            (MonthsPanel.Children[month - 1] as Button).Foreground = Brushes.BurlyWood;
             (MonthsPanel.Children[month - 1] as Button).FontSize = 24;
 
             for (int Row = 0; Row < 6; Row++)
@@ -200,7 +201,7 @@ namespace Kalendarz_T_K
         private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
         {
             DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
-           // ((sender as TextBlock).Parent as Border).Background = Brushes.LightGray;
+            // ((sender as TextBlock).Parent as Border).Background = Brushes.LightGray;
 
             Wybrany_dzien.Text = (sender as TextBlock).Text;
             Wybrany_miesiac.Text = courentdate.ToString("MMMM") + " " + courentdate.Year.ToString();
@@ -210,21 +211,21 @@ namespace Kalendarz_T_K
             Wybrany_miesiac_jako_int = month;
             Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
 
-            
+
             WyswietlWydarzenia();
 
-            Liczba_zadan.Text=Tablica_zdarzen.Children.Count.ToString()+" zadań ";
+            Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
             if ((Math.Ceiling((courentdate - DateTime.Now).TotalDays)) <= 0)
             {
                 Liczba_pozostalych_dni.Text = "- zostało 0 dni";
             }
-            else if ((Math.Ceiling((courentdate - DateTime.Now).TotalDays)) ==1)
+            else if ((Math.Ceiling((courentdate - DateTime.Now).TotalDays)) == 1)
             {
                 Liczba_pozostalych_dni.Text = "- został 1 dzień";
             }
             else
             {
-                Liczba_pozostalych_dni.Text = "- zostało "+(Math.Ceiling((courentdate - DateTime.Now).TotalDays)).ToString() + " dni";
+                Liczba_pozostalych_dni.Text = "- zostało " + (Math.Ceiling((courentdate - DateTime.Now).TotalDays)).ToString() + " dni";
             }
             //MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
         }
@@ -243,11 +244,11 @@ namespace Kalendarz_T_K
             AktualnieWidzianyRokPlus1.Foreground = Brushes.LightGray;
             AktualnieWidzianyRokPlus2.Foreground = Brushes.LightGray;
 
-            if(year!=DateTime.Now.Year)
+            if (year != DateTime.Now.Year)
             {
                 if (year - DateTime.Now.Year <= 2 && year - DateTime.Now.Year > 0)
                 {
-                    (yearPanel.Children[3- (year - DateTime.Now.Year)] as TextBlock).Foreground = Brushes.IndianRed;
+                    (yearPanel.Children[3 - (year - DateTime.Now.Year)] as TextBlock).Foreground = Brushes.IndianRed;
                 }
 
                 if (year - DateTime.Now.Year >= -2 && year - DateTime.Now.Year < 0)
@@ -281,7 +282,7 @@ namespace Kalendarz_T_K
 
 
             WyswietlDni();
-           
+
 
         }
 
@@ -290,9 +291,9 @@ namespace Kalendarz_T_K
             year--;
             AktualnieWidzianyRokMinus2.Text = (year - 2).ToString();
             AktualnieWidzianyRokMinus1.Text = (year - 1).ToString();
-            AktualnieWidzianyRok.Text       = year.ToString();
-            AktualnieWidzianyRokPlus1.Text = (year+1).ToString();
-            AktualnieWidzianyRokPlus2.Text = (year+2).ToString();
+            AktualnieWidzianyRok.Text = year.ToString();
+            AktualnieWidzianyRokPlus1.Text = (year + 1).ToString();
+            AktualnieWidzianyRokPlus2.Text = (year + 2).ToString();
 
             AktualnieWidzianyRokMinus2.Foreground = Brushes.LightGray;
             AktualnieWidzianyRokMinus1.Foreground = Brushes.LightGray;
@@ -367,12 +368,12 @@ namespace Kalendarz_T_K
             if (!(string.IsNullOrEmpty(txtTime.Text)) && txtTime.Text.Length > 0)
             {
                 lblTime.Visibility = Visibility.Collapsed;
-                
+
             }
             else
             {
                 lblTime.Visibility = Visibility.Visible;
-            
+
             }
         }
 
@@ -390,45 +391,56 @@ namespace Kalendarz_T_K
         {
             DateTime courentdate = new DateTime(Wybrany_rok_jako_int, Wybrany_miesiac_jako_int, Wybrany_dzien_jako_int);
             IList<Termin> Terminy;
-            char[] separator = {' ', '-' };
-            int pomID=-1;
+            char[] separator = { ' ', '-' };
+            int pomID = -1;
+            DateTime result1;
+            DateTime result2;
             string[] strlist = txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
-            if (strlist.Count() == 2 && (txtNote.Text.Length!=0))
+            if (strlist.Count() == 2 && (txtNote.Text.Length != 0) && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
             {
-                using (var context = new KalendarContext())
+                if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
                 {
-                    Terminy = context.Terminy.ToList();
-                }
-                foreach (var ter in Terminy)
-                {
-                    if(ter.Data== courentdate)
-                    {
-                        pomID = ter.ID;
-                    }
-                }
-                if (pomID == -1)
-                {
-                    Termin term = new Termin { Data = courentdate };
-                    using (var context = new KalendarContext())
-                    {
-                        context.Terminy.Add(term);
-                        context.SaveChanges();
-                        pomID=term.ID;
-                    }
-                }
+                    
+                        using (var context = new KalendarContext())
+                        {
+                            Terminy = context.Terminy.ToList();
+                        }
+                        foreach (var ter in Terminy)
+                        {
+                            if (ter.Data == courentdate)
+                            {
+                                pomID = ter.ID;
+                            }
+                        }
+                        if (pomID == -1)
+                        {
+                            Termin term = new Termin { Data = courentdate };
+                            using (var context = new KalendarContext())
+                            {
+                                context.Terminy.Add(term);
+                                context.SaveChanges();
+                                pomID = term.ID;
+                            }
+                        }
 
-                    Wydarzenie wydarzenie = new Wydarzenie {Notatka=txtNote.Text, Godzina_start=strlist[0], Godzina_stop=strlist[1], TerminID=pomID, Wykonane=false };
-                using (var context = new KalendarContext())
-                {
-                    context.Wydarzenia.Add(wydarzenie);
-                    context.SaveChanges();                  
+                        Wydarzenie wydarzenie = new Wydarzenie { Notatka = txtNote.Text, Godzina_start = strlist[0], Godzina_stop = strlist[1], TerminID = pomID, Wykonane = false };
+                        using (var context = new KalendarContext())
+                        {
+                            context.Wydarzenia.Add(wydarzenie);
+                            context.SaveChanges();
 
+                        }
+                        WyswietlWydarzenia();
+                        WyswietlDni();
+                        Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
+                        txtNote.Text = "";
+                        txtTime.Text = "";
+                  
                 }
-                WyswietlWydarzenia();
-                WyswietlDni();
-                Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
-                txtNote.Text = "";
-                txtTime.Text = "";
+                else
+                {
+                    MessageBox.Show("Nieprawidłowe dane");
+                }
             }
             else
             {
@@ -455,7 +467,7 @@ namespace Kalendarz_T_K
             (sender as Button).Foreground = Brushes.BurlyWood;
             month = Int32.Parse((sender as Button).Content.ToString());
 
-            if(DateTime.Now.Year==year && month != DateTime.Now.Month)
+            if (DateTime.Now.Year == year && month != DateTime.Now.Month)
             {
                 (MonthsPanel.Children[DateTime.Now.Month - 1] as Button).Foreground = Brushes.IndianRed;
             }
@@ -463,6 +475,6 @@ namespace Kalendarz_T_K
             WyswietlDni();
         }
 
-      
+
     }
 }
