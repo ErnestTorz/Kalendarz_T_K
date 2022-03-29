@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
+using System.Net;
 
 
 namespace Kalendarz_T_K
@@ -24,6 +26,7 @@ namespace Kalendarz_T_K
 
     public partial class MainWindow : Window
     {
+     
         TextBlock[] TextBlockDays = new TextBlock[42];
         Border[] TextBlockDaysBase = new Border[42];
 
@@ -38,6 +41,7 @@ namespace Kalendarz_T_K
         {
             InitializeComponent();
             InitKalendarz(4, 1);
+            PobierzPogode();
            // TestBazy();
 
 
@@ -489,6 +493,35 @@ namespace Kalendarz_T_K
             WyswietlDni();
         }
 
+        void PobierzPogode() {
+
+            string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
+            string Miasto = "Wrocław";
+            
+
+            using (WebClient web= new WebClient())
+            {
+                string url = string.Format( "https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl",Miasto,APIKey);
+                var json = web.DownloadString(url);
+                WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
+
+                var path = "https://api.openweathermap.org/img/w/"+ Info.weather[0].icon+".png";
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(path, UriKind.Absolute);
+                bitmap.EndInit();
+                //ObrazekPogody.Source = "https://api.openweathermap.org/img/w/04d.png";
+                ObrazekPogody.Source = bitmap;
+                MiastoTXT.Text = Miasto;
+                Temperatura.Text = Info.main.temp.ToString() + " °C";
+                OpisPogody.Text = Info.weather[0].description;
+                TemperaturaMIN.Text = "Temp min: "+Info.main.temp_min.ToString() + "°C";
+                TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
+
+
+            }
+        
+        }
 
     }
 }

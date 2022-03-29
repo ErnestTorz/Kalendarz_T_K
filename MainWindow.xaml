@@ -53,7 +53,7 @@
         </StackPanel>
 
         <StackPanel x:Name="MonthsPanel" Margin="0 -20 0 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"  Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="7">
-            
+
             <Button  x:Name="m1"  Content="1"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
             <Button  x:Name="m2"  Content="2"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
             <Button  x:Name="m3"  Content="3"  Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
@@ -66,9 +66,9 @@
             <Button  x:Name="m10" Content="10" Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
             <Button  x:Name="m11" Content="11" Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
             <Button  x:Name="m12" Content="12" Style="{StaticResource button}"  FontSize="20" Margin="25 0" Foreground="LightGray" VerticalAlignment="Center" HorizontalAlignment="Center" Click="MonthSelectClick"/>
-            
+
         </StackPanel>
-        <Separator Background="Gray" Height="0.8" Margin="30 70 30 10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" /> 
+        <Separator Background="Gray" Height="0.8" Margin="30 70 30 10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" />
 
         <TextBlock Grid.Row="3" Grid.Column="1" Text="Poniedziałek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
         <TextBlock Grid.Row="3" Grid.Column="2" Text="Wtorek" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
@@ -79,6 +79,20 @@
         <TextBlock Grid.Row="3" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
 
         <Border Background="LightBlue" Grid.Column="9" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="1">
+            <StackPanel Orientation="Horizontal">
+                <Image  x:Name="ObrazekPogody" Width="89" Height="89" />
+                <StackPanel Orientation="Vertical" Width="293">
+                    <TextBlock Margin="0 15 0 2" x:Name="MiastoTXT" Text="N/A" FontSize="15"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock   x:Name="Temperatura" Text="N/A" Margin="0 0 10 2" FontSize="15" Foreground="White" />
+                        <TextBlock Margin="0 0 0 2" x:Name="OpisPogody" Text="N/A" FontSize="15" Foreground="White"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="TemperaturaMIN" Text="N/A" Margin="0 0 10 2" FontSize="15" Foreground="White"/>
+                        <TextBlock x:Name="TemperaturaMAX" Text="N/A" FontSize="15" Foreground="White"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
         </Border>
 
         <Border Background="BurlyWood" Grid.Column="9" Grid.Row="2">
