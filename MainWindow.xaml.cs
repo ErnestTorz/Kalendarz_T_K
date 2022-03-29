@@ -37,6 +37,8 @@ namespace Kalendarz_T_K
         int Wybrany_miesiac_jako_int;
         int Wybrany_rok_jako_int;
 
+        string Miasto = "Wrocław";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -496,7 +498,7 @@ namespace Kalendarz_T_K
         void PobierzPogode() {
 
             string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
-            string Miasto = "Wrocław";
+            
             
 
             using (WebClient web= new WebClient())
@@ -517,6 +519,7 @@ namespace Kalendarz_T_K
                     MiastoTXT.Text = Miasto;
                     Temperatura.Text = Info.main.temp.ToString() + " °C";
                     OpisPogody.Text = Info.weather[0].description;
+                    KrajTXT.Text = Info.sys.country;
                     TemperaturaMIN.Text = "Temp min: " + Info.main.temp_min.ToString() + "°C";
                     TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
                 }
@@ -530,7 +533,7 @@ namespace Kalendarz_T_K
         private void RefesrshButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
-            string Miasto = "Wrocław";
+            
 
 
             using (WebClient web = new WebClient())
@@ -551,6 +554,7 @@ namespace Kalendarz_T_K
                     MiastoTXT.Text = Miasto;
                     Temperatura.Text = Info.main.temp.ToString() + " °C";
                     OpisPogody.Text = Info.weather[0].description;
+                    KrajTXT.Text = Info.sys.country;
                     TemperaturaMIN.Text = "Temp min: " + Info.main.temp_min.ToString() + "°C";
                     TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
                     MessageBox.Show("Odświeżono pogodę");
@@ -570,6 +574,73 @@ namespace Kalendarz_T_K
         private void RefesrshButton_MouseLeave(object sender, MouseEventArgs e)
         {
             (sender as ImageAwesome).Foreground = Brushes.White;
+        }
+
+        private void MiastoTXT_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            CityChange changewin = new CityChange();
+            changewin.ChangeButton.MouseDoubleClick += ChangeButton_MouseDoubleClick; ;
+            changewin.Owner = Window.GetWindow(this);
+
+            changewin.ShowDialog();
+        }
+
+        private void ChangeButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
+
+
+            CityChange thiswindow = null;
+           
+
+
+            //Odnajdywanie okna 
+            foreach (Window window in Application.Current.Windows.OfType<CityChange>())
+            {
+                thiswindow = ((CityChange)window);
+            }
+
+            string Miasto = thiswindow.txtCity.Text;
+
+
+            using (WebClient web = new WebClient())
+            {
+                string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl", Miasto, APIKey);
+                try
+                {
+                    var json = web.DownloadString(url);
+                    WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
+
+                    var path = "https://api.openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
+                    BitmapImage bitmap = new BitmapImage();
+                    bitmap.BeginInit();
+                    bitmap.UriSource = new Uri(path, UriKind.Absolute);
+                    bitmap.EndInit();
+                    //ObrazekPogody.Source = "https://api.openweathermap.org/img/w/04d.png";
+                    ObrazekPogody.Source = bitmap;
+                    
+                    Temperatura.Text = Info.main.temp.ToString() + " °C";
+                    OpisPogody.Text = Info.weather[0].description;
+                    KrajTXT.Text = Info.sys.country;
+                    TemperaturaMIN.Text = "Temp min: " + Info.main.temp_min.ToString() + "°C";
+                    TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
+                    MiastoTXT.Text = Miasto;
+                    thiswindow.Close();
+                }
+                catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe.\n Upewnij się, że wprowadzane miasto jest prawidłowe \nlub korzystaj z aplikacji bez informacji o pogodzie."); }
+
+
+            }
+        }
+
+        private void MiastoTXT_MouseEnter(object sender, MouseEventArgs e)
+        {
+            MiastoTXT.Foreground = Brushes.Black;
+        }
+
+        private void MiastoTXT_MouseLeave(object sender, MouseEventArgs e)
+        {
+            MiastoTXT.Foreground = Brushes.White;
         }
     }
 }

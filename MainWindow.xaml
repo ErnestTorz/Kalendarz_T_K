@@ -82,8 +82,11 @@
             <StackPanel Orientation="Horizontal">
                 <Image  x:Name="ObrazekPogody" Width="89" Height="89" />
                 <StackPanel Orientation="Vertical" Width="293">
-                    <TextBlock Margin="10 11 0 2" x:Name="MiastoTXT" Text="N/A" FontSize="18" Foreground="White"/>
                     <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="10 11 0 2" x:Name="KrajTXT" Text="N/A" FontSize="18" Foreground="White"/>
+                    <TextBlock Margin="10 11 0 2" x:Name="MiastoTXT" Text="N/A" FontSize="18" Foreground="White" MouseLeftButtonDown="MiastoTXT_MouseLeftButtonDown" MouseEnter="MiastoTXT_MouseEnter" MouseLeave="MiastoTXT_MouseLeave"/>
+                    </StackPanel>
+                        <StackPanel Orientation="Horizontal">
                         <TextBlock   x:Name="Temperatura" Text="N/A" Margin="10 0 10 2" FontSize="15" Foreground="White" />
                         <TextBlock Margin="0 0 0 2" x:Name="OpisPogody" Text="N/A" FontSize="15" Foreground="White"/>
                     </StackPanel>

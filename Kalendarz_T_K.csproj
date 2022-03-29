@@ -76,6 +76,9 @@
     <Compile Include="ChangeWindow.xaml.cs">
       <DependentUpon>ChangeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CityChange.xaml.cs">
+      <DependentUpon>CityChange.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202203240926098_InitialCreate.cs" />
     <Compile Include="Migrations\202203240926098_InitialCreate.designer.cs">
       <DependentUpon>202203240926098_InitialCreate.cs</DependentUpon>
@@ -92,6 +95,10 @@
       <DependentUpon>MenuButton.xaml</DependentUpon>
     </Compile>
     <Page Include="ChangeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CityChange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

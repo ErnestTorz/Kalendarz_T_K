@@ -36,6 +36,7 @@ namespace Kalendarz_T_K
 
         public class sys
         {
+            public string country { get; set; }
             public long sunrise { get; set; }
             public long sunset { get; set; }
         }
