@@ -82,7 +82,7 @@
             <StackPanel Orientation="Horizontal">
                 <Image  x:Name="ObrazekPogody" Width="89" Height="89" />
                 <StackPanel Orientation="Vertical" Width="293">
-                    <TextBlock Margin="10 11 0 2" x:Name="MiastoTXT" Text="N/A" FontSize="15"/>
+                    <TextBlock Margin="10 11 0 2" x:Name="MiastoTXT" Text="N/A" FontSize="18" Foreground="White"/>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock   x:Name="Temperatura" Text="N/A" Margin="10 0 10 2" FontSize="15" Foreground="White" />
                         <TextBlock Margin="0 0 0 2" x:Name="OpisPogody" Text="N/A" FontSize="15" Foreground="White"/>
@@ -92,6 +92,7 @@
                         <TextBlock x:Name="TemperaturaMAX" Text="N/A" FontSize="15" Foreground="White"/>
                     </StackPanel>
                 </StackPanel>
+                <fa:ImageAwesome x:Name="RefesrshButton" Margin="-20 -40 0 0" Icon="Refresh" Width="20" Height="20"  Foreground="#FFF3EDE6" MouseLeftButtonDown="RefesrshButton_MouseLeftButtonDown" MouseEnter="RefesrshButton_MouseEnter" MouseLeave="RefesrshButton_MouseLeave"/>
             </StackPanel>
         </Border>
 
