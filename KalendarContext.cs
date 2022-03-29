@@ -41,7 +41,7 @@ namespace Kalendarz_T_K
                             new Wydarzenie()
                             {
                                 ID = 3001,
-                                Notatka="aRajd rowerowy.",
+                                Notatka="Rajd rowerowy.",
                                 Godzina_start="12:00",
                                 Godzina_stop="13:00",
                                 TerminID=1001,
@@ -50,7 +50,7 @@ namespace Kalendarz_T_K
                             new Wydarzenie()
                             {
                                 ID = 3002,
-                                Notatka="aObiad.",
+                                Notatka="Obiad.",
                                 Godzina_start="13:00",
                                 Godzina_stop="14:00",
                                 TerminID=1001,
@@ -67,7 +67,7 @@ namespace Kalendarz_T_K
                             new Wydarzenie()
                             {
                                 ID = 3003,
-                                Notatka="aWuprowadzka.",
+                                Notatka="Wyprowadzka.",
                                 Godzina_start="10:10",
                                 Godzina_stop="12:20",
                                 TerminID=1002,
@@ -76,7 +76,7 @@ namespace Kalendarz_T_K
                             new Wydarzenie()
                             {
                                 ID = 3004,
-                                Notatka="aKolacja.",
+                                Notatka="Kolacja.",
                                 Godzina_start="20:00",
                                 Godzina_stop="21:00",
                                 TerminID=1002,
