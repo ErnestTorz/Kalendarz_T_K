@@ -150,6 +150,7 @@ namespace Kalendarz_T_K.UserControls
                         }
                         else
                         {
+                            this.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleThin;
                             context.Entry(wyd).Entity.Wykonane = false;
                         }
                         context.SaveChanges();
