@@ -600,12 +600,12 @@ namespace Kalendarz_T_K
                 thiswindow = ((CityChange)window);
             }
 
-            string Miasto = thiswindow.txtCity.Text;
+            string Miastopom = thiswindow.txtCity.Text;
 
 
             using (WebClient web = new WebClient())
             {
-                string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl", Miasto, APIKey);
+                string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl", Miastopom, APIKey);
                 try
                 {
                     var json = web.DownloadString(url);
@@ -624,7 +624,8 @@ namespace Kalendarz_T_K
                     KrajTXT.Text = Info.sys.country;
                     TemperaturaMIN.Text = "Temp min: " + Info.main.temp_min.ToString() + "°C";
                     TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
-                    MiastoTXT.Text = Miasto;
+                    MiastoTXT.Text = Miastopom;
+                    Miasto = Miastopom;
                     thiswindow.Close();
                 }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe.\n Upewnij się, że wprowadzane miasto jest prawidłowe \nlub korzystaj z aplikacji bez informacji o pogodzie."); }

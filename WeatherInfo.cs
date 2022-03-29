@@ -48,6 +48,8 @@ namespace Kalendarz_T_K
             public wind wind { get; set; } 
             public sys sys { get; set; }
 
+            public string name { get; set; }
+
         }
     }
 }
