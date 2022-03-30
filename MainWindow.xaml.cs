@@ -26,7 +26,7 @@ namespace Kalendarz_T_K
 
     public partial class MainWindow : Window
     {
-     
+
         TextBlock[] TextBlockDays = new TextBlock[42];
         Border[] TextBlockDaysBase = new Border[42];
 
@@ -38,13 +38,13 @@ namespace Kalendarz_T_K
         int Wybrany_rok_jako_int;
 
         string Miasto = "Wrocław";
-
+        string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
         public MainWindow()
         {
             InitializeComponent();
             InitKalendarz(4, 1);
             PobierzPogode();
-           // TestBazy();
+            // TestBazy();
 
 
         }
@@ -62,21 +62,21 @@ namespace Kalendarz_T_K
                 Terminy = context.Terminy.ToList();
                 WydarzeniaWczyt = context.Wydarzenia.ToList();
             }
-           
-            
-           
+
+
+
             foreach (Termin t in Terminy)
             {
                 if (t.Data.ToString("d") == WybranyTermin.ToString("d"))
                 {
                     if (t.Wydarzenia.Count > 0)
                     {
-                        Wydarzeniapom=t.Wydarzenia.ToList();
-                        Wydarzenia = Wydarzeniapom.OrderBy(o => o.Godzina_start).ThenBy(o=>o.Godzina_stop).ToList();
+                        Wydarzeniapom = t.Wydarzenia.ToList();
+                        Wydarzenia = Wydarzeniapom.OrderBy(o => o.Godzina_start).ThenBy(o => o.Godzina_stop).ToList();
 
                         foreach (Wydarzenie w in Wydarzenia)
                         {
-                            
+
                             Item item = new Item();
                             item.seter(w);
                             Tablica_zdarzen.Children.Add(item);
@@ -410,52 +410,52 @@ namespace Kalendarz_T_K
             DateTime result1;
             DateTime result2;
             string[] strlist = txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
-            for(int i = 0; i < strlist.Length; i++)
+            for (int i = 0; i < strlist.Length; i++)
             {
                 strlist[i] = strlist[i].Replace(" ", String.Empty);
             }
 
 
-            if (strlist.Count() == 2 && (txtNote.Text.Length != 0) &&txtNote.Text.Count(char.IsWhiteSpace)!=txtNote.Text.Length && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
+            if (strlist.Count() == 2 && (txtNote.Text.Length != 0) && txtNote.Text.Count(char.IsWhiteSpace) != txtNote.Text.Length && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
             {
                 if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
                 {
-                    
-                        using (var context = new KalendarContext())
-                        {
-                            Terminy = context.Terminy.ToList();
-                        }
-                        foreach (var ter in Terminy)
-                        {
-                            if (ter.Data == courentdate)
-                            {
-                                pomID = ter.ID;
-                            }
-                        }
-                        if (pomID == -1)
-                        {
-                            Termin term = new Termin { Data = courentdate };
-                            using (var context = new KalendarContext())
-                            {
-                                context.Terminy.Add(term);
-                                context.SaveChanges();
-                                pomID = term.ID;
-                            }
-                        }
 
-                        Wydarzenie wydarzenie = new Wydarzenie { Notatka = txtNote.Text, Godzina_start = strlist[0], Godzina_stop = strlist[1], TerminID = pomID, Wykonane = false };
+                    using (var context = new KalendarContext())
+                    {
+                        Terminy = context.Terminy.ToList();
+                    }
+                    foreach (var ter in Terminy)
+                    {
+                        if (ter.Data == courentdate)
+                        {
+                            pomID = ter.ID;
+                        }
+                    }
+                    if (pomID == -1)
+                    {
+                        Termin term = new Termin { Data = courentdate };
                         using (var context = new KalendarContext())
                         {
-                            context.Wydarzenia.Add(wydarzenie);
+                            context.Terminy.Add(term);
                             context.SaveChanges();
-
+                            pomID = term.ID;
                         }
-                        WyswietlWydarzenia();
-                        WyswietlDni();
-                        Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
-                        txtNote.Text = "";
-                        txtTime.Text = "";
-                  
+                    }
+
+                    Wydarzenie wydarzenie = new Wydarzenie { Notatka = txtNote.Text, Godzina_start = strlist[0], Godzina_stop = strlist[1], TerminID = pomID, Wykonane = false };
+                    using (var context = new KalendarContext())
+                    {
+                        context.Wydarzenia.Add(wydarzenie);
+                        context.SaveChanges();
+
+                    }
+                    WyswietlWydarzenia();
+                    WyswietlDni();
+                    Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
+                    txtNote.Text = "";
+                    txtTime.Text = "";
+
                 }
                 else
                 {
@@ -495,80 +495,67 @@ namespace Kalendarz_T_K
             WyswietlDni();
         }
 
-        void PobierzPogode() {
-
-            string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
-            
-            
-
-            using (WebClient web= new WebClient())
+        private void ProceduraPobraniaApi(string Miasto, string APIKey)
+        {
+           
+            using (WebClient web = new WebClient
             {
-                string url = string.Format( "https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl",Miasto,APIKey);
-                try
-                {
-                    var json = web.DownloadString(url);
-                    WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
+                Encoding = System.Text.Encoding.UTF8
+            })
+            {
+                string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl", Miasto, APIKey);
+                var json = web.DownloadString(url);
+                WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
 
-                    var path = "https://api.openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(path, UriKind.Absolute);
-                    bitmap.EndInit();
-                    //ObrazekPogody.Source = "https://api.openweathermap.org/img/w/04d.png";
-                    ObrazekPogody.Source = bitmap;
-                    MiastoTXT.Text = Miasto;
-                    Temperatura.Text = Info.main.temp.ToString() + " °C";
-                    OpisPogody.Text = Info.weather[0].description;
-                    KrajTXT.Text = Info.sys.country;
-                    TemperaturaMIN.Text = "Temp min: " + Info.main.temp_min.ToString() + "°C";
-                    TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
-                }
-                catch (Exception ex) { MessageBox.Show("Error: "+ex.Message.ToString()+"\nBrak połączenia z API. Sprawdz ustawienia sieciowe i zresetuj aplikację\nlub korzystaj z aplikacji bez informacji o pogodzie"); }
-
-
+                var path = "https://api.openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(path, UriKind.Absolute);
+                bitmap.EndInit();
+                ObrazekPogody.Source = bitmap;
+                MiastoTXT.Text = Info.name;
+                Miasto = Info.name;
+                Temperatura.Text = Info.main.temp.ToString() + " °C";
+                OpisPogody.Text = Info.weather[0].description;
+                KrajTXT.Text = Info.sys.country;
+                TemperaturaMIN.Text = "Temp min: " + Info.main.temp_min.ToString() + "°C";
+                TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
             }
-        
+        }
+
+        void PobierzPogode()
+        {
+
+            try
+            {
+
+                ProceduraPobraniaApi(Miasto,APIKey);
+            }
+            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe i dokonaj resetu\nlub korzystaj z aplikacji bez informacji o pogodzie"); }
+
+
+
+
         }
 
         private void RefesrshButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
             
 
-
-            using (WebClient web = new WebClient())
-            {
-                string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl", Miasto, APIKey);
                 try
                 {
-                    var json = web.DownloadString(url);
-                    WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
-
-                    var path = "https://api.openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(path, UriKind.Absolute);
-                    bitmap.EndInit();
-                    //ObrazekPogody.Source = "https://api.openweathermap.org/img/w/04d.png";
-                    ObrazekPogody.Source = bitmap;
-                    MiastoTXT.Text = Miasto;
-                    Temperatura.Text = Info.main.temp.ToString() + " °C";
-                    OpisPogody.Text = Info.weather[0].description;
-                    KrajTXT.Text = Info.sys.country;
-                    TemperaturaMIN.Text = "Temp min: " + Info.main.temp_min.ToString() + "°C";
-                    TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
-                    MessageBox.Show("Odświeżono pogodę");
+                    ProceduraPobraniaApi(Miasto, APIKey);
                 }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe i zresetuj aplikację\nlub korzystaj z aplikacji bez informacji o pogodzie"); }
 
 
-            }
+         
 
         }
 
         private void RefesrshButton_MouseEnter(object sender, MouseEventArgs e)
         {
-            (sender as ImageAwesome).Foreground=Brushes.Black ;
+            (sender as ImageAwesome).Foreground = Brushes.Black;
         }
 
         private void RefesrshButton_MouseLeave(object sender, MouseEventArgs e)
@@ -586,12 +573,11 @@ namespace Kalendarz_T_K
         }
 
         private void ChangeButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
+        { 
 
 
             CityChange thiswindow = null;
-           
+
 
 
             //Odnajdywanie okna 
@@ -602,36 +588,15 @@ namespace Kalendarz_T_K
 
             string Miastopom = thiswindow.txtCity.Text;
 
-
-            using (WebClient web = new WebClient())
-            {
-                string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl", Miastopom, APIKey);
                 try
                 {
-                    var json = web.DownloadString(url);
-                    WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
+                    ProceduraPobraniaApi(Miastopom, APIKey);
+                thiswindow.Close();
+                MessageBox.Show("Pomyślnie odświeżono pogodę.");
 
-                    var path = "https://api.openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
-                    BitmapImage bitmap = new BitmapImage();
-                    bitmap.BeginInit();
-                    bitmap.UriSource = new Uri(path, UriKind.Absolute);
-                    bitmap.EndInit();
-                    //ObrazekPogody.Source = "https://api.openweathermap.org/img/w/04d.png";
-                    ObrazekPogody.Source = bitmap;
-                    
-                    Temperatura.Text = Info.main.temp.ToString() + " °C";
-                    OpisPogody.Text = Info.weather[0].description;
-                    KrajTXT.Text = Info.sys.country;
-                    TemperaturaMIN.Text = "Temp min: " + Info.main.temp_min.ToString() + "°C";
-                    TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
-                    MiastoTXT.Text = Miastopom;
-                    Miasto = Miastopom;
-                    thiswindow.Close();
                 }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe.\n Upewnij się, że wprowadzane miasto jest prawidłowe \nlub korzystaj z aplikacji bez informacji o pogodzie."); }
-
-
-            }
+    
         }
 
         private void MiastoTXT_MouseEnter(object sender, MouseEventArgs e)
