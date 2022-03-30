@@ -37,7 +37,7 @@ namespace Kalendarz_T_K
         int Wybrany_miesiac_jako_int;
         int Wybrany_rok_jako_int;
 
-        string Miasto = "Wrocław";
+        string WybraneMiasto = "Wrocław";
         string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
         public MainWindow()
         {
@@ -514,7 +514,7 @@ namespace Kalendarz_T_K
                 bitmap.EndInit();
                 ObrazekPogody.Source = bitmap;
                 MiastoTXT.Text = Info.name;
-                Miasto = Info.name;
+                WybraneMiasto = Info.name;
                 Temperatura.Text = Info.main.temp.ToString() + " °C";
                 OpisPogody.Text = Info.weather[0].description;
                 KrajTXT.Text = Info.sys.country;
@@ -529,7 +529,7 @@ namespace Kalendarz_T_K
             try
             {
 
-                ProceduraPobraniaApi(Miasto,APIKey);
+                ProceduraPobraniaApi(WybraneMiasto, APIKey);
             }
             catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe i dokonaj resetu\nlub korzystaj z aplikacji bez informacji o pogodzie"); }
 
@@ -544,8 +544,9 @@ namespace Kalendarz_T_K
 
                 try
                 {
-                    ProceduraPobraniaApi(Miasto, APIKey);
-                }
+                    ProceduraPobraniaApi(WybraneMiasto, APIKey);
+                MessageBox.Show("Pomyślnie odświeżono pogodę.");
+            }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe i zresetuj aplikację\nlub korzystaj z aplikacji bez informacji o pogodzie"); }
 
 
@@ -592,7 +593,7 @@ namespace Kalendarz_T_K
                 {
                     ProceduraPobraniaApi(Miastopom, APIKey);
                 thiswindow.Close();
-                MessageBox.Show("Pomyślnie odświeżono pogodę.");
+               
 
                 }
                 catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe.\n Upewnij się, że wprowadzane miasto jest prawidłowe \nlub korzystaj z aplikacji bez informacji o pogodzie."); }
