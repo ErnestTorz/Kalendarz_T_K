@@ -1,0 +1,34 @@
+﻿<Window x:Class="Kalendarz_T_K.CityChange"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kalendarz_T_K"
+        
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="" Height="115" Width="375" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Border  Background="FloralWhite" CornerRadius="20" HorizontalAlignment="Center" Width="360" Margin="5,4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <fa:ImageAwesome Margin="10 7 0 0" Grid.Column="0" HorizontalAlignment="Left" Icon="Home" Width="30" Height="30" Foreground="Gray"/>
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Grid.Column="0" Text="Zmień miasto" x:Name="lblNote" Style="{StaticResource textHint}" MouseDown="lblNote_MouseDown" />
+                <TextBox FontSize="25" Grid.Column="0" x:Name="txtCity" Style="{StaticResource textBox}" TextChanged="txtNote_TextChanged" Margin="67,0,11,0" Height="39"/>
+
+
+
+
+                <Button x:Name="ChangeButton"  Grid.Column="1" Style="{StaticResource button}" MouseEnter="Button_MouseEnter" MouseLeave="Button_MouseLeave"  >
+                    <Border x:Name="ChangeButtonBorder" Background="LightGray" CornerRadius="80">
+                        <TextBlock Foreground="White"  x:Name="ChangeButtonText" FontSize="19" Text="Zmień" Margin="5 18"   />
+                    </Border>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

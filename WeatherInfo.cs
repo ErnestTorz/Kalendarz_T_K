@@ -36,6 +36,7 @@ namespace Kalendarz_T_K
 
         public class sys
         {
+            public string country { get; set; }
             public long sunrise { get; set; }
             public long sunset { get; set; }
         }
@@ -46,6 +47,8 @@ namespace Kalendarz_T_K
             public main main { get; set; }
             public wind wind { get; set; } 
             public sys sys { get; set; }
+
+            public string name { get; set; }
 
         }
     }
