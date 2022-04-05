@@ -14,9 +14,7 @@ using System.Windows.Shapes;
 
 namespace Kalendarz_T_K
 {
-    /// <summary>
-    /// Logika interakcji dla klasy ChangeWindow.xaml
-    /// </summary>
+    /// Klasa służąca do obsługi tylko i wyłącznie szaty graficznie okna zmiany informacji o wydarzeniu
     public partial class ChangeWindow : Window
     {
         public ChangeWindow()

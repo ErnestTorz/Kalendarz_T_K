@@ -17,9 +17,7 @@ using Kalendarz_T_K;
 
 namespace Kalendarz_T_K.UserControls
 {
-    /// <summary>
-    /// Logika interakcji dla klasy Item.xaml
-    /// </summary>
+     /// Klasa służąca do wyświetlania wydarzeń z bazy oraz obsługi ich dodawania, usuwania oraz edytowania
     public partial class Item : UserControl
     {
         public Item()
@@ -28,7 +26,7 @@ namespace Kalendarz_T_K.UserControls
             
         }
         public int ID { get; set; }
-        
+        /// Metoda służąca do popbrania indormacji z klasy wydarzeń, w celu graficznej prezentacji 
         public void seter(Wydarzenie wyd)
         { 
             this.ID=wyd.ID;
@@ -48,7 +46,7 @@ namespace Kalendarz_T_K.UserControls
             this.IconBell = FontAwesome.WPF.FontAwesomeIcon.ClockOutline;
             this.Color = Brushes.White;
         }
-        
+        /// Możliwość ustawianie tytułu w pliku XAML
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
@@ -56,35 +54,38 @@ namespace Kalendarz_T_K.UserControls
         }
         public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(Item));
 
-
+        /// Możliwość ustawianie czasu w pliku XAML
         public string Time
         {
             get { return (string)GetValue(TimeProperty); }
             set { SetValue(TimeProperty, value); }
         }
         public static readonly DependencyProperty TimeProperty = DependencyProperty.Register("Time", typeof(string), typeof(Item));
-
+        /// Możliwość ustawianie koloru w pliku XAML
         public SolidColorBrush Color
         {
             get { return (SolidColorBrush)GetValue(ColorProperty); }
             set { SetValue(ColorProperty, value); }
         }
         public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(SolidColorBrush), typeof(Item));
-
+        /// Możliwość ustawianie ikonki w pliku XAML
         public FontAwesome.WPF.FontAwesomeIcon IconBell
         {
             get { return (FontAwesome.WPF.FontAwesomeIcon)GetValue(IconBellProperty); }
             set { SetValue(IconBellProperty, value); }
         }
         public static readonly DependencyProperty IconBellProperty = DependencyProperty.Register("IconBell", typeof(FontAwesome.WPF.FontAwesomeIcon), typeof(Item));
-
+        /// Możliwość ustawianie ikonki w pliku XAML
         public FontAwesome.WPF.FontAwesomeIcon Icon
         {
             get { return (FontAwesome.WPF.FontAwesomeIcon)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register("Icon", typeof(FontAwesome.WPF.FontAwesomeIcon), typeof(Item));
-
+        /// Metoda do obsługki zdarzenia kliknięcia w ikonkę usuwania
+        /// 
+        /// Dane z bazy wyszukiwane są za pomocą ID i jeśli zostaną odalezione odpowiednie wydarzenie jest usuwane. Jesli okaze się że było to jedyne wydarzenie powiązane z daną datą
+        /// to dane na temat terminu też są usuwane, w celu usuwania zbędnych informacji
         private void MenuButton_MouseDoubleClick_Trash(object sender, MouseButtonEventArgs e)
         {
 
@@ -132,6 +133,9 @@ namespace Kalendarz_T_K.UserControls
             thiswindow.Liczba_zadan.Text = thiswindow.Tablica_zdarzen.Children.Count.ToString() + " zadań ";
         }
 
+        /// Metoda obsługująca zdarzenie oznaczenia danego eventu jako wykonanego
+        /// 
+        /// Jeśli użytkownik oznaczył wydarzenie jako wykonane/nie wykonane dane w bazie zostają zaktualnizowane.
         private void MenuButton_MouseDoubleClick_Check(object sender, MouseButtonEventArgs e)
         {
             IList<Wydarzenie> wydarzenia;
@@ -161,6 +165,9 @@ namespace Kalendarz_T_K.UserControls
             }
         }
 
+        /// Metoda obsługująca zdarzenia edycji wydarzenia
+        /// 
+        /// Zostaje wyświetlone okno zmiany wydarzenia oraz dodana obsługa podwójnego kliknięcia
         private void MenuButton_MouseDoubleClick_Edit(object sender, MouseButtonEventArgs e)
 
         {
@@ -172,7 +179,10 @@ namespace Kalendarz_T_K.UserControls
             changewin.ShowDialog();
 
         }
-
+        /// Metoda obsługująca zmianę wydarzenia
+        /// 
+        /// Metoda w oknie zmiany obsługuje wydarzenie kliknięcia na guzik zmiany danych
+        /// Jeśli wporwadzone dane są prawidłowe szata graficzna zostaje odświeżona oraz odpowiednei dane na podstawie ID zostają zmienione w bazue danych
         private void ChangeButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             IList<Wydarzenie> wydarzenia;

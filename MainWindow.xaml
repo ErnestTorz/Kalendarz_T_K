@@ -78,7 +78,7 @@
         <TextBlock Grid.Row="3" Grid.Column="6" Text="Sobota" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
         <TextBlock Grid.Row="3" Grid.Column="7" Text="Niedziela" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="19" />
 
-        <Border Background="LightBlue" Grid.Column="8" Grid.Row="1"  Grid.ColumnSpan="2" Margin="22,0,3,0">
+        <Border Background="LightBlue" Grid.Column="9" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="1">
             <StackPanel Orientation="Horizontal">
                 <Image  x:Name="ObrazekPogody" Width="89" Height="89" />
                 <StackPanel Orientation="Vertical" Width="293">

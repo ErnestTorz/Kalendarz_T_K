@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Kalendarz_T_K
-{
+{   
+    /// Klasa przechowująca informacje z Api pogodowego
     class WeatherInfo
     {
         public class coord

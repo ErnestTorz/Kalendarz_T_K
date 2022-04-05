@@ -5,7 +5,8 @@ using System.Linq;
 using System.Collections.ObjectModel;
 
 namespace Kalendarz_T_K
-{
+{   
+    /// Klasa bazy danych
     public class KalendarContext : DbContext
     {
         // Your context has been configured to use a 'KalendarContext' connection string from your application's 
