@@ -229,7 +229,7 @@ namespace Kalendarz_T_K
         ///Prywatna metoda obsługująca  wydarzenie kliknięcia użytkownika na dzień w kalendarzu
         /// 
         /// Metoda po koliknięciu w dzień w kalendarzu pobiera "numer" dnia i następnie wyświtla odpowiednią datę oraz informacje
-        /// w sekcji wydarzeń.Metoda wykorzystuje WyswitlWydarzenia, dzięki czemu wyświetlane są dni wybranej daty
+        /// w sekcji wydarzeń.Metoda wykorzystuje WyswitlWydarzenia, dzięki czemu wyświetlane są dni wybranej daty.
         private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
         {
             DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
