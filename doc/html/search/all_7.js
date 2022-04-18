@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['main_0',['main',['../class_kalendarz___t___k_1_1_weather_info_1_1main.html',1,'Kalendarz_T_K::WeatherInfo']]],
-  ['mainwindow_1',['MainWindow',['../class_kalendarz___t___k_1_1_main_window.html',1,'Kalendarz_T_K']]],
-  ['miastotxt_5fmouseenter_2',['MiastoTXT_MouseEnter',['../class_kalendarz___t___k_1_1_main_window.html#ad23d146c33571ef4e8bb74c51d8cc7c0',1,'Kalendarz_T_K::MainWindow']]],
-  ['miastotxt_5fmouseleave_3',['MiastoTXT_MouseLeave',['../class_kalendarz___t___k_1_1_main_window.html#a30c1eeb9cc346fc6c6edb27a464ceeec',1,'Kalendarz_T_K::MainWindow']]],
-  ['miastotxt_5fmouseleftbuttondown_4',['MiastoTXT_MouseLeftButtonDown',['../class_kalendarz___t___k_1_1_main_window.html#a000d01bfa1da73d4bc53659b8b750452',1,'Kalendarz_T_K::MainWindow']]],
-  ['monthselectclick_5',['MonthSelectClick',['../class_kalendarz___t___k_1_1_main_window.html#a94af53034aa30bff15fd26fcb2d04e8a',1,'Kalendarz_T_K::MainWindow']]]
+  ['kalendarcontext_0',['KalendarContext',['../class_kalendarz___t___k_1_1_kalendar_context.html#aa038cad3af3c77dd303736ce195155d6',1,'Kalendarz_T_K.KalendarContext.KalendarContext()'],['../class_kalendarz___t___k_1_1_kalendar_context.html',1,'Kalendarz_T_K.KalendarContext']]],
+  ['kalendarz_5ft_5fk_1',['Kalendarz_T_K',['../namespace_kalendarz___t___k.html',1,'Kalendarz_T_K'],['../md__r_e_a_d_m_e.html',1,'(Global Namespace)']]],
+  ['kalendarzdbinitializer_2',['KalendarzDbInitializer',['../class_kalendarz___t___k_1_1_kalendarz_db_initializer.html',1,'Kalendarz_T_K']]],
+  ['klik_5fna_5fdzien_3',['Klik_na_dzien',['../class_kalendarz___t___k_1_1_main_window.html#a43e7be886e08d5c30d7408c0b474f498',1,'Kalendarz_T_K::MainWindow']]]
 ];

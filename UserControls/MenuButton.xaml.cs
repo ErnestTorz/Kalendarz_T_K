@@ -1,15 +1,13 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
+using System.Windows;
 
-
+/// Przestrzeń nazw kontrolek programu kalendarza.
 namespace Kalendarz_T_K.UserControls
 {
-    /// <summary>
     /// Logika interakcji dla klasy MenuButton.xaml
-    /// </summary>
     public partial class MenuButton : UserControl
-    {
-        
+    {   
+        /// Metoda inicjalizuje...
         public MenuButton()
         {
             InitializeComponent();
@@ -20,6 +18,7 @@ namespace Kalendarz_T_K.UserControls
             get { return (string)GetValue(CaptionProperty); }
             set { SetValue(CaptionProperty, value); }
         }
+
         public static readonly DependencyProperty CaptionProperty = DependencyProperty.
             Register("Caption",typeof(string),typeof(MenuButton));
 
@@ -28,29 +27,8 @@ namespace Kalendarz_T_K.UserControls
             get { return (FontAwesome.WPF.FontAwesomeIcon)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
+
         public static readonly DependencyProperty IconProperty = DependencyProperty.
             Register("Icon", typeof(FontAwesome.WPF.FontAwesomeIcon), typeof(MenuButton));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

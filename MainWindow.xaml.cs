@@ -1,55 +1,59 @@
-﻿using Kalendarz_T_K.UserControls;
-using System;
+﻿using System.Windows.Media.Imaging;
+using Kalendarz_T_K.UserControls;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
+using System.Windows.Navigation;
 using System.Windows.Documents;
+using System.Windows.Controls;
+using System.Threading.Tasks;
+using System.Windows.Shapes;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Newtonsoft.Json;
-using System.Net;
+using System.Windows.Data;
 using FontAwesome.WPF;
-/// Główny namspace
+using Newtonsoft.Json;
+using System.Windows;
+using System.Linq;
+using System.Text;
+using System.Net;
+using System;
+
+/// Główna przestrzeń nazw programu kalendarza.
 namespace Kalendarz_T_K
 {
-    /// Klasa głównego okna
+    /// Klasa głównego okna programu kalendarza.
     /// 
-    /// W śrdoku niej przchowywane są zmnienne globalne oraz metody potrzene do stworzenia front i backendu kalendarza
+    /// Przechowuje globalne zmienne i definiuje metody 
+    /// odpowiadające za backend i frontend programu kalendarza.
     public partial class MainWindow : Window
     {
+        TextBlock[] TextBlockDays = new TextBlock[42]; ///<
+        Border[] TextBlockDaysBase = new Border[42]; ///<
 
-        TextBlock[] TextBlockDays = new TextBlock[42];
-        Border[] TextBlockDaysBase = new Border[42];
-
-        int year;
-        int month;
+        int year; ///< Aktualny rok
+        int month; ///< Aktualny miesiąc
 
         int Wybrany_dzien_jako_int;
         int Wybrany_miesiac_jako_int;
         int Wybrany_rok_jako_int;
 
-        string WybraneMiasto = "Wrocław";
-        string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5";
+        string WybraneMiasto = "Wrocław"; ///< Wybrane przez użytkownika miasto
+        string APIKey = "b7df7f386e5b02eb65554d11cc1fdfb5"; ///< Indywidualny klucz do API
+        
+        /// Metoda inicjalizuje program kalendarza.
+        /// 
+        /// Ponadto pobiera informacje o pogodzie przy pomocy API.
         public MainWindow()
         {
             InitializeComponent();
             InitKalendarz(4, 1);
             PobierzPogode();
-            // TestBazy();
-
-
         }
-        /// Metoda do wyświtlenia wydarzeń
+
+        /// Metoda wyświetla wydarzenia.
         /// 
-        /// Metoda pobiera odpowiednie dane z Bazy KalendarContext, dzieje się to na podstawie wybranego dnia.
-        /// następnie dynamicznie wyświetla ją w stack panelu. Dodatkowo pobrane wydarzenia sortowane są po godzinie rosnąco
+        /// Pobiera odpowiednie dane z bazy danych przy pomocy KalendarContext i
+        /// robi to dla wybranego dnia. Kolejno dynamicznie wyświetla je w stack panel.
+        /// Dodatkowo sortuje wydarzenia z danego dnia rosnąco pod względem ich godzin rozpoczęcia.
         public void WyswietlWydarzenia()
         {
             IList<Termin> Terminy;
@@ -57,15 +61,13 @@ namespace Kalendarz_T_K
             List<Wydarzenie> Wydarzeniapom;
             List<Wydarzenie> Wydarzenia;
             DateTime WybranyTermin = new DateTime(Wybrany_rok_jako_int, Wybrany_miesiac_jako_int, Wybrany_dzien_jako_int);
+            
             Tablica_zdarzen.Children.Clear();
             using (var context = new KalendarContext())
             {
                 Terminy = context.Terminy.ToList();
                 WydarzeniaWczyt = context.Wydarzenia.ToList();
             }
-
-
-
             foreach (Termin t in Terminy)
             {
                 if (t.Data.ToString("d") == WybranyTermin.ToString("d"))
@@ -77,24 +79,25 @@ namespace Kalendarz_T_K
 
                         foreach (Wydarzenie w in Wydarzenia)
                         {
-
                             Item item = new Item();
+
                             item.seter(w);
                             Tablica_zdarzen.Children.Add(item);
                         }
                     }
                 }
             }
-
         }
 
-        /// Prywatna metoda do testowania bazy
+        /// Metoda testuje bazę danych.
         /// 
-        /// Metoda powstałą w celach diagnostycznych, dane z bazy wyświetlane są po kolei w messageboxie
+        /// Powstała w celach diagnostycznych. Dane
+        /// z bazy są kolejno wyświetlane w messagebox.
         private void TestBazy()
         {
             IList<Termin> Terminy;
             IList<Wydarzenie> Wydarzenia;
+
             using (var context = new KalendarContext())
             {
                 Terminy = context.Terminy.ToList();
@@ -108,42 +111,45 @@ namespace Kalendarz_T_K
             {
                 MessageBox.Show("ID: " + w.ID.ToString() + ", " + w.Notatka + ", " + w.TerminID.ToString());
             }
-
         }
-        /// Metoda służąca do wyświtlanai dni
+
+        /// Metoda wyświetla dni.
         /// 
-        /// Metoda na podstawie wybranego dnia, miesiąca i roku oblicza od jakiego dnia tygodnia zaczyna się
-        /// miesiąc. Wypisuje odpowiednie dni do kalendarza i zaznacza dni w których znajdują sięjakieś wydarzenia oraz
-        /// zaznacza na czerwono dzisiejszą datę
+        /// Oblicza dzień tygodnia rozpoczynający miesiąc na
+        /// podstawie wybranego dnia, miesiąca i roku. Wpisuje
+        /// odpowiednie dni do kalendarza. Zaznacza na czerwono 
+        /// aktualną datę i daty, w których występują wydarzenia.
         public void WyswietlDni()
         {
             IList<Termin> Terminy;
             IList<Wydarzenie> Wydarzenia;
             DateTime courentdate;
+
             using (var context = new KalendarContext())
             {
                 Terminy = context.Terminy.ToList();
                 Wydarzenia = context.Wydarzenia.ToList();
-
                 AktualnieWidzianyRok.Text = year.ToString();
                 DateTime startofthemonth = new DateTime(year, month, 1);
-
                 int days = DateTime.DaysInMonth(year, month);
                 int dayoftheweek = ((int)startofthemonth.DayOfWeek == 0) ? 7 : (int)startofthemonth.DayOfWeek;
+
                 for (int i = 0; i < dayoftheweek - 1; i++)
                 {
                     TextBlockDaysBase[i].Background = Brushes.Transparent;
                     (TextBlockDaysBase[i].Child as TextBlock).Text = "";
                 }
+
                 int a = 1;
+
                 for (int i = dayoftheweek - 1; i < days + dayoftheweek - 1; i++)
                 {
                     TextBlockDaysBase[i].Background = Brushes.Transparent;
                     (TextBlockDaysBase[i].Child as TextBlock).Text = a.ToString();
                     courentdate = new DateTime(year, month, a);
+
                     foreach (Termin t in Terminy)
                     {
-
                         if (t.Data.ToString("d") == courentdate.ToString("d"))
                         {
                             TextBlockDaysBase[i].Background = Brushes.LightGray;
@@ -151,26 +157,29 @@ namespace Kalendarz_T_K
                     }
                     a++;
                 }
-
                 for (int i = days + dayoftheweek - 1; i < 42; i++)
                 {
                     TextBlockDaysBase[i].Background = Brushes.Transparent;
                     (TextBlockDaysBase[i].Child as TextBlock).Text = "";
-
-
                 }
                 if (year == DateTime.Now.Year && month == DateTime.Now.Month)
                 {
                     TextBlockDaysBase[dayoftheweek - 2 + DateTime.Now.Day].Background = Brushes.IndianRed;
                 }
-
             }
         }
-        ///Metoda służąca do zainicalizowanai kalendarza
+
+        /// Metoda inicjalizuje kalendarz.
         ///
-        ///Metoda pobiera z DateTime aktualną datę, na jej podstawie wyświetla odpowiednie dane urzykownikowi.
-        ///Tworzy również dynamicznie textblocki, w któych będą znajdować się odpowiednie dni miesiąca.
-        ///Metoda wywołuje również metody takie jak WyswietlDni oraz WyswietlWydarzenia
+        /// Pobiera aktualną datę przy pomocy DateTime i
+        /// wyświetla odpowiednie dane na jej podstawie.
+        /// Dynamicznie tworzy textblocki, w których będą
+        /// przechowywane odpowiednie dni miesiąca. Ponadto
+        /// wywołuje metody takie jak WyswietlDni() oraz
+        /// WyswietlWydarzenia().
+        /// 
+        /// @param row_offset 
+        /// @param col_offset
         private void InitKalendarz(int row_offset, int col_offset)
         {
             year = DateTime.Now.Year;
@@ -218,22 +227,23 @@ namespace Kalendarz_T_K
 
                     TextBlockDaysBase[(Row * 7) + Col].Child = TextBlockDays[(Row * 7) + Col];
                     TabDni.Children.Add(TextBlockDaysBase[(Row * 7) + Col]);
-
                 }
             }
             WyswietlDni();
             WyswietlWydarzenia();
-
         }
 
-        ///Prywatna metoda obsługująca  wydarzenie kliknięcia użytkownika na dzień w kalendarzu
+        /// Metoda obsługuje wydarzenie kliknięcia 
+        /// na dzień w kalendarzu przez użytkownika.
         /// 
-        /// Metoda po koliknięciu w dzień w kalendarzu pobiera "numer" dnia i następnie wyświtla odpowiednią datę oraz informacje
-        /// w sekcji wydarzeń.Metoda wykorzystuje WyswitlWydarzenia, dzięki czemu wyświetlane są dni wybranej daty.
+        /// Po kliknięciu na dowolny dzień w kalendarzu przez 
+        /// użytkownika pobiera "numer" tego dnia i wyświetla
+        /// odpowiednią datę, a także informacje w sekcji
+        /// wydarzeń tego dnia. Wykorzystuje metodę 
+        /// WyswietlWydarzenia().
         private void Klik_na_dzien(object sender, MouseButtonEventArgs e)
         {
             DateTime courentdate = new DateTime(year, month, Int32.Parse((sender as TextBlock).Text));
-            // ((sender as TextBlock).Parent as Border).Background = Brushes.LightGray;
 
             Wybrany_dzien.Text = (sender as TextBlock).Text;
             Wybrany_miesiac.Text = courentdate.ToString("MMMM") + " " + courentdate.Year.ToString();
@@ -243,10 +253,10 @@ namespace Kalendarz_T_K
             Wybrany_miesiac_jako_int = month;
             Wybrany_dzien_jako_int = Int32.Parse((sender as TextBlock).Text);
 
-
             WyswietlWydarzenia();
 
             Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
+
             if ((Math.Ceiling((courentdate - DateTime.Now).TotalDays)) <= 0)
             {
                 Liczba_pozostalych_dni.Text = "- zostało 0 dni";
@@ -259,16 +269,16 @@ namespace Kalendarz_T_K
             {
                 Liczba_pozostalych_dni.Text = "- zostało " + (Math.Ceiling((courentdate - DateTime.Now).TotalDays)).ToString() + " dni";
             }
-            //MessageBox.Show("Klik na: " + (sender as TextBlock).Text + "." + month + "." + year);
         }
 
-        /// Metoda służąca do obsługi wydarzenia inkrementacji aktualnego roku
+        /// Metoda obsługuje wydarzenie inkrementacji aktualnego roku.
         /// 
-        /// Metoda inkrementuje zmienną globalną year, na tej podstawie odświrzane jest szata graficzna oraz wyświetlany jest odpwiedni rok
-        /// Metoda wykorzystuje również metodę WyswietlDni
+        /// Inkrementuje globalną zmienną year. Odświeża szatę graficzną
+        /// i wyświetla odpowiedni rok. Wykorzystuje metodę WyswietlDni().
         private void DoPrzodu(object sender, RoutedEventArgs e)
         {
             year++;
+
             AktualnieWidzianyRokMinus2.Text = (year - 2).ToString();
             AktualnieWidzianyRokMinus1.Text = (year - 1).ToString();
             AktualnieWidzianyRok.Text = year.ToString();
@@ -286,7 +296,6 @@ namespace Kalendarz_T_K
                 {
                     (yearPanel.Children[3 - (year - DateTime.Now.Year)] as TextBlock).Foreground = Brushes.IndianRed;
                 }
-
                 if (year - DateTime.Now.Year >= -2 && year - DateTime.Now.Year < 0)
                 {
                     (yearPanel.Children[3 - (year - DateTime.Now.Year)] as TextBlock).Foreground = Brushes.IndianRed;
@@ -309,22 +318,21 @@ namespace Kalendarz_T_K
             (MonthsPanel.Children[month - 1] as Button).FontSize = 24;
             (MonthsPanel.Children[month - 1] as Button).Foreground = Brushes.BurlyWood;
 
-
             if (DateTime.Now.Year == year && month != DateTime.Now.Month)
             {
                 (MonthsPanel.Children[DateTime.Now.Month - 1] as Button).Foreground = Brushes.IndianRed;
             }
-
-
-
             WyswietlDni();
-
-
         }
 
+        /// Metoda obsługuje wydarzenie dekrementacji aktualnego roku.
+        /// 
+        /// Dekrementuje globalną zmienną year. Odświeża szatę graficzną
+        /// i wyświetla odpowiedni rok. Wykorzystuje metodę WyswietlDni().
         private void DoTylu(object sender, RoutedEventArgs e)
         {
             year--;
+
             AktualnieWidzianyRokMinus2.Text = (year - 2).ToString();
             AktualnieWidzianyRokMinus1.Text = (year - 1).ToString();
             AktualnieWidzianyRok.Text = year.ToString();
@@ -365,24 +373,25 @@ namespace Kalendarz_T_K
             (MonthsPanel.Children[month - 1] as Button).FontSize = 24;
             (MonthsPanel.Children[month - 1] as Button).Foreground = Brushes.BurlyWood;
 
-
             if (DateTime.Now.Year == year && month != DateTime.Now.Month)
             {
                 (MonthsPanel.Children[DateTime.Now.Month - 1] as Button).Foreground = Brushes.IndianRed;
             }
-
-
-
-
             WyswietlDni();
         }
-        /// Metoda do obsługi wydarzenia najechania myszki na pole tekstowe do wprowadzania daty
+
+        /// Metoda obsługuje wydarzenie najechania myszką 
+        /// na pole tekstowe do wprowadzania daty przez użytkownika.
         private void lblNote_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtNote.Focus();
         }
 
-        /// Metoda do obsługi wydarzenia zmiany tekstu w polu tekstowym, tak aby pomocnicze informacje w polu tekstowym znikły
+        /// Metoda obsługuje wydarzenie zmiany tekstu 
+        /// w polu tekstowym przez użytkownika.
+        /// 
+        /// Robi to w sposób, w którym pomocniecze 
+        /// informacje w polu tekstowym znikają.
         private void txtNote_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!(string.IsNullOrEmpty(txtNote.Text)) && txtNote.Text.Length > 0)
@@ -394,12 +403,19 @@ namespace Kalendarz_T_K
                 lblNote.Visibility = Visibility.Visible;
             }
         }
-        /// Metoda do obsługi wydarzenia najechania myszki na pole tekstowe do wprowadzania daty
+
+        /// Metoda obsługuje wydarzenie najechania myszką
+        /// na pole tekstowe do wprowadzania daty przez użytkownika.
         private void lblTime_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtTime.Focus();
         }
-        /// Metoda do obsługi wydarzenia zmiany tekstu w polu tekstowym, tak aby pomocnicze informacje w polu tekstowym znikły
+
+        /// Metoda obsługuje wydarzenie zmiany tekstu 
+        /// w polu tekstowym przez użytkownika.
+        /// 
+        /// Robi to w sposób, w którym pomocniecze 
+        /// informacje w polu tekstowym znikają.
         private void txtTime_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!(string.IsNullOrEmpty(txtTime.Text)) && txtTime.Text.Length > 0)
@@ -413,22 +429,38 @@ namespace Kalendarz_T_K
 
             }
         }
-        /// Metoda do obsługi wydarzenia najechania myszy, zmienia kolor guzika po najechaniu
+
+        /// Metoda obsługuje wydarzenie najechania myszką
+        /// na przycisk przez użytkownika.
+        /// 
+        /// Po najechaniu myszką na przysick przez 
+        /// użytkownika zmienia kolor przycisku.
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
             Add_event.Foreground = Brushes.Black;
         }
-        /// Metoda do obsługi wydarzenia wyjechania myszy, zmienia kolor guzika po wyjechaniu
+
+        /// Metoda obsługuje wydarzenie zjechania myszką
+        /// z przycisku przez użytkownika.
+        /// 
+        /// Po zjechaniu myszką z przycisku przez
+        /// użytkownika zmienia kolor przycisku.
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
             Add_event.Foreground = Brushes.White;
         }
 
-        /// Metoda obsługująca wydarzenia naciśniecia na przycisk dodawanai notatki do dnia
+        /// Metoda obsługuje wydarzenie kliknięcia na przycisk 
+        /// służący do dodawania notatki do wydarzenia.
         /// 
-        /// Metoda pobiera informacje o aktualnie wybranej dacie oraz informacjie wpisane w polach tekstowych przez użytkowanika. 
-        /// Poddaje dane walidacji. Jeśli dane są prawidłowe dodawane są w odpowiedni sposób do bazy danych. Metoda odświeża również aktualnie wyświetlane wydarzenia
-        /// oraz wyświetlane dni w kalendarzu tak aby oznaczyć, dzień w którym jest jakieś wydarzenie 
+        /// Pobiera dane o aktualnie wybranej dacie i dane
+        /// wpisane w polach tekstowych przez użytkownika.
+        /// Poddaje je walidacji. Jeśli dane są prawidłowe,
+        /// to są, w odpowiedni sposób, dodawane do bazy 
+        /// danych. Ponadto metoda odświeża aktualnie
+        /// wyświetlane wydarzenia i dni w kalendarzu
+        /// w celu zaznaczenia dni, w które występują
+        /// wydarzenia.
         private void Add_Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DateTime courentdate = new DateTime(Wybrany_rok_jako_int, Wybrany_miesiac_jako_int, Wybrany_dzien_jako_int);
@@ -438,17 +470,15 @@ namespace Kalendarz_T_K
             DateTime result1;
             DateTime result2;
             string[] strlist = txtTime.Text.Split(separator, 2, StringSplitOptions.RemoveEmptyEntries);
+
             for (int i = 0; i < strlist.Length; i++)
             {
                 strlist[i] = strlist[i].Replace(" ", String.Empty);
             }
-
-
             if (strlist.Count() == 2 && (txtNote.Text.Length != 0) && txtNote.Text.Count(char.IsWhiteSpace) != txtNote.Text.Length && DateTime.TryParse(strlist[0], out result1) && DateTime.TryParse(strlist[1], out result2))
             {
                 if (result2 >= result1 && result1.ToString("t") == strlist[0] && result2.ToString("t") == strlist[1])
                 {
-
                     using (var context = new KalendarContext())
                     {
                         Terminy = context.Terminy.ToList();
@@ -463,6 +493,7 @@ namespace Kalendarz_T_K
                     if (pomID == -1)
                     {
                         Termin term = new Termin { Data = courentdate };
+
                         using (var context = new KalendarContext())
                         {
                             context.Terminy.Add(term);
@@ -472,6 +503,7 @@ namespace Kalendarz_T_K
                     }
 
                     Wydarzenie wydarzenie = new Wydarzenie { Notatka = txtNote.Text, Godzina_start = strlist[0], Godzina_stop = strlist[1], TerminID = pomID, Wykonane = false };
+                    
                     using (var context = new KalendarContext())
                     {
                         context.Wydarzenia.Add(wydarzenie);
@@ -480,10 +512,10 @@ namespace Kalendarz_T_K
                     }
                     WyswietlWydarzenia();
                     WyswietlDni();
+
                     Liczba_zadan.Text = Tablica_zdarzen.Children.Count.ToString() + " zadań ";
                     txtNote.Text = "";
                     txtTime.Text = "";
-
                 }
                 else
                 {
@@ -496,9 +528,11 @@ namespace Kalendarz_T_K
             }
         }
 
-        /// Metoda obsługująca wybranie miesiąca
+        /// Metoda obsługuje wydarzenie kliknięcia 
+        /// na miesiąc przez użytkownika.
         /// 
-        /// Metoda w odświeża dane na podstaiwe wybranego miesiąca
+        /// Odświeża wyświetlane dane na podstawie 
+        /// wybranego miesiąca.
         private void MonthSelectClick(object sender, RoutedEventArgs e)
         {
             m1.Foreground = Brushes.LightGray; m1.FontSize = 20;
@@ -522,17 +556,19 @@ namespace Kalendarz_T_K
             {
                 (MonthsPanel.Children[DateTime.Now.Month - 1] as Button).Foreground = Brushes.IndianRed;
             }
-
             WyswietlDni();
         }
-        ///Prywatna metoda do pobierania API pogodowego
+
+        /// Metoda pobiera pogodowe API.
         ///
-        /// Metoda jest prywatna i jest wykorzystywana w innych metodach zabezpieczonych przed pojawieniem się błedu.
-        /// Metoda pobiera dane pogodowe ze storny https://openweathermap.org i pobier je do klasy  WeatherInfo, dzięki czemu 
-        /// odpowiednie dane mogą zostać wyświetlone
+        /// Jest wykorzystywana w innych metodach zabezpieczonych przed pojawieniem się błedu.
+        /// Pobiera dane pogodowe ze strony https://openweathermap.org do do klasy WeatherInfo
+        /// w celu wyświetlania odpowiednich danych.
+        /// 
+        /// @param Miasto Wybrane przez użytkownika miasto
+        /// @param APIKey Indywidualny klucz do API
         private void ProceduraPobraniaApi(string Miasto, string APIKey)
         {
-           
             using (WebClient web = new WebClient
             {
                 Encoding = System.Text.Encoding.UTF8
@@ -541,7 +577,6 @@ namespace Kalendarz_T_K
                 string url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid={1}&units=metric&lang=pl", Miasto, APIKey);
                 var json = web.DownloadString(url);
                 WeatherInfo.root Info = JsonConvert.DeserializeObject<WeatherInfo.root>(json);
-
                 var path = "https://api.openweathermap.org/img/w/" + Info.weather[0].icon + ".png";
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
@@ -557,56 +592,62 @@ namespace Kalendarz_T_K
                 TemperaturaMAX.Text = "Temp max: " + Info.main.temp_max.ToString() + " °C";
             }
         }
-        ///Metoda do pobrania pogody
+
+        /// Metoda pobiera pogodę.
         ///
-        /// Metoda pobiera dane wykorzysując metode  ProceduraPobraniaApi, a następnie zabespicza ją poprzez try oraz catch
+        /// Pobiera pogodę przy pomocy metody ProceduraPobraniaApi()
+        /// i zabezpiecza ją przy pomocy mechanizmu try, catch.
         public void PobierzPogode()
         {
-
             try
             {
-
                 ProceduraPobraniaApi(WybraneMiasto, APIKey);
             }
             catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe i dokonaj resetu\nlub korzystaj z aplikacji bez informacji o pogodzie"); }
-
-
-
-
         }
-        /// Metoda do odświeżania pogody
+
+        /// Metoda odświerza wyświetlaną pogodę.
         /// 
-        /// Metoda pobiera dane wykorzysując metode  ProceduraPobraniaApi, a następnie zabespicza ją poprzez try oraz catch
+        /// Pobiera dane przy pomocy metody ProceduraPobraniaApi()
+        /// i zabezpiecza ją przy pomocy mechanizmu try, catch.
         private void RefesrshButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            
-
-                try
-                {
-                    ProceduraPobraniaApi(WybraneMiasto, APIKey);
+            try
+            {
+                ProceduraPobraniaApi(WybraneMiasto, APIKey);
                 MessageBox.Show("Pomyślnie odświeżono pogodę.");
             }
-                catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe i zresetuj aplikację\nlub korzystaj z aplikacji bez informacji o pogodzie"); }
-
-
-         
-
+            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe i zresetuj aplikację\nlub korzystaj z aplikacji bez informacji o pogodzie"); }
         }
-        /// Metoda obsługująca zdarzenie najechania na guzik odświeżania pogody. Zmieniany jest kolor guzika
+
+        /// Metoda obsługuje wydarzenie najechania na przycisk 
+        /// służący do odświeżania pogody przez użytkownika. 
+        /// 
+        /// Po najechaniu na przycisk przez użytkownika
+        /// jest zmieniany kolor przycisku.
         private void RefesrshButton_MouseEnter(object sender, MouseEventArgs e)
         {
             (sender as ImageAwesome).Foreground = Brushes.Black;
         }
 
-        /// Metoda obsługująca zdarzenie wyjechania z guzika odświeżania pogody. Zmieniany jest kolor guzika
+        /// Metoda obsługuje wydarzenie zjechania z przycisku
+        /// służącego do odświeżania pogody przez użytkownika. 
+        /// 
+        /// Po zjechaniu z przycisku przez użytkownika
+        /// jest zmieniany kolor przycisku.
         private void RefesrshButton_MouseLeave(object sender, MouseEventArgs e)
         {
             (sender as ImageAwesome).Foreground = Brushes.White;
         }
 
-        /// Metoda obsługująca zdarzenie kliknięcia na guzik do zmiany obecnego miasta
+        /// Metoda obsługuje wydarzenie kliknięcia na przycisk, 
+        /// służący do zmiany aktualnie wybranego miasta, przez
+        /// użytkownika.
         /// 
-        /// Metoda doadje obsługę doubule klicka do okna zmiany i wyświetla okno zmiany miasta
+        /// Obsługuje podwójne kliknięcie na przycisk przez
+        /// użytkownika i wyświetla okno pozwające na zmienę 
+        /// aktualnie wybranego miasta, dla którego jest 
+        /// wyświetlana aktualna pogoda.
         private void MiastoTXT_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             CityChange changewin = new CityChange();
@@ -615,18 +656,20 @@ namespace Kalendarz_T_K
 
             changewin.ShowDialog();
         }
-        /// Obsługa podwujnego kliknięcia na zmianę miasta w oknie zmiany miasta
+
+        /// Metoda obsługuje wydarzenie kliknięcia na przycisk w oknie
+        /// zmiany miasta, służący do zmiany aktualnie wybranego miasta, 
+        /// przez użytkownika.
         /// 
-        /// Metoda na podstawie wprowadzonych informacji o mieście pobiera odpowiednie api pogodowe
+        /// Obsługuje podwójne kliknięcie na przycisk w
+        /// oknie zmiany miasta przez użytkownika. Ponadto
+        /// na podstawie podanych danych pobiera odpowiednie
+        /// dane przy pomocy pogodowego API.
         private void ChangeButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         { 
-
-
             CityChange thiswindow = null;
 
-
-
-            //Odnajdywanie okna 
+            // Znalezienie okna 
             foreach (Window window in Application.Current.Windows.OfType<CityChange>())
             {
                 thiswindow = ((CityChange)window);
@@ -634,22 +677,31 @@ namespace Kalendarz_T_K
 
             string Miastopom = thiswindow.txtCity.Text;
 
-                try
-                {
-                    ProceduraPobraniaApi(Miastopom, APIKey);
+            try
+            {
+                ProceduraPobraniaApi(Miastopom, APIKey);
                 thiswindow.Close();
-               
-
-                }
-                catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe.\n Upewnij się, że wprowadzane miasto jest prawidłowe \nlub korzystaj z aplikacji bez informacji o pogodzie."); }
-    
+            }
+            catch (Exception ex) { MessageBox.Show("Error: " + ex.Message.ToString() + "\nBrak połączenia z API. Sprawdz ustawienia sieciowe.\n Upewnij się, że wprowadzane miasto jest prawidłowe \nlub korzystaj z aplikacji bez informacji o pogodzie."); }
         }
-        /// Metoda obsługująca zdarzenie najechania na guzik. Zmieniany jest kolor guzika
+
+        /// Metoda obsługuje wydarzenie najechania myszką
+        /// na przycisk przez użytkownika.
+        /// 
+        /// Po najechaniu myszką na przycisk przez
+        /// użytkownika zmienia kolor przycisku
+        /// na czarny.
         private void MiastoTXT_MouseEnter(object sender, MouseEventArgs e)
         {
             MiastoTXT.Foreground = Brushes.Black;
         }
-        /// Metoda obsługująca zdarzenie wyjechania z guzika. Zmieniany jest kolor guzika
+
+        /// Metoda obsługuje wydarzenie zjechania myszką
+        /// z przycisku przez użytkownika.
+        /// 
+        /// Po zjechaniu myszką z przycisku przez
+        /// użytkownika zmienia kolor przycisku
+        /// na biały.
         private void MiastoTXT_MouseLeave(object sender, MouseEventArgs e)
         {
             MiastoTXT.Foreground = Brushes.White;

@@ -99,38 +99,44 @@ $(document).ready(function(){initNavTree('class_kalendarz___t___k_1_1_wydarzenie
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa do bazy danych przechowująca informacje o wydarzeniu.  
+<p>Klasa reprezentuje encję <b><a class="el" href="class_kalendarz___t___k_1_1_wydarzenie.html" title="Klasa reprezentuje encję Wydarzenie w bazie danych.">Wydarzenie</a></b> w bazie danych.  
  <a href="class_kalendarz___t___k_1_1_wydarzenie.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a30a20f7a87525c6a23edf2873da6f9b9"><td class="memItemLeft" align="right" valign="top"><a id="a30a20f7a87525c6a23edf2873da6f9b9" name="a30a20f7a87525c6a23edf2873da6f9b9"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>ID</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a30a20f7a87525c6a23edf2873da6f9b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID wydarzenia będące kluczem głównym encji <b><a class="el" href="class_kalendarz___t___k_1_1_wydarzenie.html" title="Klasa reprezentuje encję Wydarzenie w bazie danych.">Wydarzenie</a></b> <br /></td></tr>
 <tr class="separator:a30a20f7a87525c6a23edf2873da6f9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a517a3b4bf7a7f29e3245029ae30e2fc2"><td class="memItemLeft" align="right" valign="top"><a id="a517a3b4bf7a7f29e3245029ae30e2fc2" name="a517a3b4bf7a7f29e3245029ae30e2fc2"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Notatka</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a517a3b4bf7a7f29e3245029ae30e2fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notatka dotycząca wydarzenia. <br /></td></tr>
 <tr class="separator:a517a3b4bf7a7f29e3245029ae30e2fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaae24d70634b36a7ae0bfdb744d62570"><td class="memItemLeft" align="right" valign="top"><a id="aaae24d70634b36a7ae0bfdb744d62570" name="aaae24d70634b36a7ae0bfdb744d62570"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Godzina_start</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:aaae24d70634b36a7ae0bfdb744d62570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Godzina rozpoczęcia wydarzenia. <br /></td></tr>
 <tr class="separator:aaae24d70634b36a7ae0bfdb744d62570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64eea586a0373e38f6aafdf7295c41ef"><td class="memItemLeft" align="right" valign="top"><a id="a64eea586a0373e38f6aafdf7295c41ef" name="a64eea586a0373e38f6aafdf7295c41ef"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Godzina_stop</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a64eea586a0373e38f6aafdf7295c41ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Godzina zakończenia wydarzenia. <br /></td></tr>
 <tr class="separator:a64eea586a0373e38f6aafdf7295c41ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9db0a7f97e525d108c679ff34b1374f5"><td class="memItemLeft" align="right" valign="top"><a id="a9db0a7f97e525d108c679ff34b1374f5" name="a9db0a7f97e525d108c679ff34b1374f5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Wykonane</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a9db0a7f97e525d108c679ff34b1374f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informacja dotycząca tego czy wydarzenie zostało zakończone. <br /></td></tr>
 <tr class="separator:a9db0a7f97e525d108c679ff34b1374f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a425070a6f5b0a55d807c8537e1e18c14"><td class="memItemLeft" align="right" valign="top"><a id="a425070a6f5b0a55d807c8537e1e18c14" name="a425070a6f5b0a55d807c8537e1e18c14"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>TerminID</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a425070a6f5b0a55d807c8537e1e18c14"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID terminu wydarzenia będące kluczem obcym encji <b><a class="el" href="class_kalendarz___t___k_1_1_wydarzenie.html" title="Klasa reprezentuje encję Wydarzenie w bazie danych.">Wydarzenie</a></b> <br /></td></tr>
 <tr class="separator:a425070a6f5b0a55d807c8537e1e18c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91b506152551f2324b93388daafe576d"><td class="memItemLeft" align="right" valign="top"><a id="a91b506152551f2324b93388daafe576d" name="a91b506152551f2324b93388daafe576d"></a>
 virtual <a class="el" href="class_kalendarz___t___k_1_1_termin.html">Termin</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Termin</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a91b506152551f2324b93388daafe576d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obiekt klasy <a class="el" href="class_kalendarz___t___k_1_1_termin.html" title="Klasa reprezentuje encję Termin w bazie danych.">Termin</a> reprezentujący powiązanie encji <b><a class="el" href="class_kalendarz___t___k_1_1_wydarzenie.html" title="Klasa reprezentuje encję Wydarzenie w bazie danych.">Wydarzenie</a></b> z encją <b><a class="el" href="class_kalendarz___t___k_1_1_termin.html" title="Klasa reprezentuje encję Termin w bazie danych.">Termin</a></b> <br /></td></tr>
 <tr class="separator:a91b506152551f2324b93388daafe576d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Klasa do bazy danych przechowująca informacje o wydarzeniu. </p>
-<pre class="fragment">Klasa przechowuje takie informacje jak: ID, Notatke, Godzinę rozpoczęcia wydarzneia, godzine zkończenia wydarzenia, oraz informacje czy zadanie zostało wyonane
-Klasa mołączona jest również relacją z Terminem i może go posiadać tylko w jednym wydaniu 
-</pre> </div></div><!-- contents -->
+<div class="textblock"><p >Klasa reprezentuje encję <b><a class="el" href="class_kalendarz___t___k_1_1_wydarzenie.html" title="Klasa reprezentuje encję Wydarzenie w bazie danych.">Wydarzenie</a></b> w bazie danych. </p>
+<p >Przechowuje informacje takie jak ID i notatka dotycząca wydarzenia, planowana godzina rozpoczęcia i zakończenia wydarzenia oraz czy zostało ono zakończone. Encja <b>Wydarzenia</b> jest w relacji wiele do jednego z encją <b><a class="el" href="class_kalendarz___t___k_1_1_termin.html" title="Klasa reprezentuje encję Termin w bazie danych.">Termin</a></b> - w 1 terminie może być 0, 1 lub więcej wydarzeń. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

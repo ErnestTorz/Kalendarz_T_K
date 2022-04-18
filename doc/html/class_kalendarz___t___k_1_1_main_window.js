@@ -1,10 +1,12 @@
 var class_kalendarz___t___k_1_1_main_window =
 [
+    [ "MainWindow", "class_kalendarz___t___k_1_1_main_window.html#a4620e5a5f447d99e45c61268c090e2d7", null ],
     [ "Add_Button_MouseDoubleClick", "class_kalendarz___t___k_1_1_main_window.html#a351b1bde1440c41cd255b598791d29e5", null ],
     [ "Button_MouseEnter", "class_kalendarz___t___k_1_1_main_window.html#a897bcecd6f6dcda273013c466dc23cbd", null ],
     [ "Button_MouseLeave", "class_kalendarz___t___k_1_1_main_window.html#ae93b06efe276e8d8878394d69fdc8ed1", null ],
     [ "ChangeButton_MouseDoubleClick", "class_kalendarz___t___k_1_1_main_window.html#a74b426cfda27bef0aaf34a1f5fc54216", null ],
     [ "DoPrzodu", "class_kalendarz___t___k_1_1_main_window.html#a0f1bc56378af956a301ea0d20e0a8b76", null ],
+    [ "DoTylu", "class_kalendarz___t___k_1_1_main_window.html#a07dc999c3352340d449d6f77e18b9b02", null ],
     [ "InitKalendarz", "class_kalendarz___t___k_1_1_main_window.html#ad72a7c34086d2adca8eea7e34934f752", null ],
     [ "Klik_na_dzien", "class_kalendarz___t___k_1_1_main_window.html#a43e7be886e08d5c30d7408c0b474f498", null ],
     [ "lblNote_MouseDown", "class_kalendarz___t___k_1_1_main_window.html#afa854da4b9d638e5ce4d7e1483f9bcca", null ],
@@ -22,5 +24,9 @@ var class_kalendarz___t___k_1_1_main_window =
     [ "txtNote_TextChanged", "class_kalendarz___t___k_1_1_main_window.html#ad86b7f4db71527a28853d50e82a49520", null ],
     [ "txtTime_TextChanged", "class_kalendarz___t___k_1_1_main_window.html#a7ce9018463f23960887daf04f17ae168", null ],
     [ "WyswietlDni", "class_kalendarz___t___k_1_1_main_window.html#a9fde5f5f909e992182c62c197a80e4e2", null ],
-    [ "WyswietlWydarzenia", "class_kalendarz___t___k_1_1_main_window.html#a78c0a7befcfc481ff0053678c94f831e", null ]
+    [ "WyswietlWydarzenia", "class_kalendarz___t___k_1_1_main_window.html#a78c0a7befcfc481ff0053678c94f831e", null ],
+    [ "APIKey", "class_kalendarz___t___k_1_1_main_window.html#a000890eef886296bc13ec9ff500e7ef7", null ],
+    [ "month", "class_kalendarz___t___k_1_1_main_window.html#a5cd49b979c7fc1bb948290155875ba72", null ],
+    [ "WybraneMiasto", "class_kalendarz___t___k_1_1_main_window.html#afe7eb54fdcfecba870686aba029c7320", null ],
+    [ "year", "class_kalendarz___t___k_1_1_main_window.html#a54b00f2d9e1c3de1a5c8e0f668dc1853", null ]
 ];

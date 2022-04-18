@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['termin_0',['Termin',['../class_kalendarz___t___k_1_1_termin.html',1,'Kalendarz_T_K']]],
-  ['testbazy_1',['TestBazy',['../class_kalendarz___t___k_1_1_main_window.html#ad4902b50ca7af6b0cd9b616aff72dee8',1,'Kalendarz_T_K::MainWindow']]],
-  ['txtnote_5ftextchanged_2',['txtNote_TextChanged',['../class_kalendarz___t___k_1_1_main_window.html#ad86b7f4db71527a28853d50e82a49520',1,'Kalendarz_T_K::MainWindow']]],
-  ['txttime_5ftextchanged_3',['txtTime_TextChanged',['../class_kalendarz___t___k_1_1_main_window.html#a7ce9018463f23960887daf04f17ae168',1,'Kalendarz_T_K::MainWindow']]]
+  ['pobierzpogode_0',['PobierzPogode',['../class_kalendarz___t___k_1_1_main_window.html#a108299d7c9a2f20bd5f2b86b8fde977e',1,'Kalendarz_T_K::MainWindow']]],
+  ['pressure_1',['pressure',['../class_kalendarz___t___k_1_1_weather_info_1_1main.html#a26e0b2df2e89141789651863a45afa75',1,'Kalendarz_T_K::WeatherInfo::main']]],
+  ['procedurapobraniaapi_2',['ProceduraPobraniaApi',['../class_kalendarz___t___k_1_1_main_window.html#a13e3f8ccb23dfb33ff90906234095870',1,'Kalendarz_T_K::MainWindow']]]
 ];
