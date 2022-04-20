@@ -178,8 +178,8 @@ namespace Kalendarz_T_K
         /// wywołuje metody takie jak WyswietlDni() oraz
         /// WyswietlWydarzenia().
         /// 
-        /// @param row_offset 
-        /// @param col_offset
+        /// @param row_offset offset umożliwiający przesuwanie kalendarza pionowo w siatce grid
+        /// @param col_offset offset umożliwiający przesuwanie kalendarza poziomo w siatce grid
         private void InitKalendarz(int row_offset, int col_offset)
         {
             year = DateTime.Now.Year;

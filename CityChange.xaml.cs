@@ -24,13 +24,21 @@ namespace Kalendarz_T_K
             InitializeComponent();
         }
 
-        /// Metoda obsługuje wydarzenie...
+        /// Metoda obsługuje wydarzenie najechania myszką
+        /// na pole tekstowe przez użytkownika.
+        /// 
+        /// Po najechaniu myszką na pole teskstowe przez
+        /// użytkownika insterfejs na pierwszy plan wydobywa Text box, z pod warstwy graficznej
         private void lblNote_MouseDown(object sender, MouseButtonEventArgs e)
         {
             txtCity.Focus();
         }
 
-        /// Metoda obsługuje wydarzenie...
+        /// Metoda obsługuje wydarzenie zmiany tekstu
+        /// w polu tekstowym
+        /// 
+        /// Po zmianie tekstu przez używtkonika, tekst pomocniczy zanika gdy Text box 
+        /// nie jest pusty, w innym przypadku teskst pomocniczy jest widoczny
         private void txtNote_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!(string.IsNullOrEmpty(txtCity.Text)) && txtCity.Text.Length > 0)

@@ -21,13 +21,13 @@ namespace Kalendarz_T_K.UserControls
     /// obsługuje ich dodawanie, usuwanie i edytowanie.
     public partial class Item : UserControl
     {
-        /// Metoda inicjalizuje...
+        /// Metoda inicjalizuje element w liście zadań
         public Item()
         {
             InitializeComponent();
         }
-
-        public int ID { get; set; } ///< ID...
+        /// Zmienna pozwalająca przechowywać ID danego wydażenia 
+        public int ID { get; set; } 
 
         /// Metoda pobiera informacje z klasy wydarzeń 
         /// w celu ich graficznej prezentacji. 

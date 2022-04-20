@@ -7,7 +7,7 @@ namespace Kalendarz_T_K.UserControls
     /// Logika interakcji dla klasy MenuButton.xaml
     public partial class MenuButton : UserControl
     {   
-        /// Metoda inicjalizuje...
+        /// Metoda inicjalizuje przycisk menu
         public MenuButton()
         {
             InitializeComponent();
