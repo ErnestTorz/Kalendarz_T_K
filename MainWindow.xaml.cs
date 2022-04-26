@@ -115,7 +115,7 @@ namespace Kalendarz_T_K
 
         /// Metoda wyświetla dni.
         /// 
-        /// Oblicza dzień tygodnia rozpoczynający miesiąc na
+        /// Oblicza dzień tygodnia rozpoczynający miesiąc na 
         /// podstawie wybranego dnia, miesiąca i roku. Wpisuje
         /// odpowiednie dni do kalendarza. Zaznacza na czerwono 
         /// aktualną datę i daty, w których występują wydarzenia.
